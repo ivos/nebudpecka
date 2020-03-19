@@ -1,0 +1,659 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>CaseFu FSD</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+          crossorigin="anonymous">
+
+    <style>
+        main > section {
+            margin-top: 20px;
+        }
+
+        main > section:target {
+            display: block;
+        }
+
+        .card {
+            margin-bottom: .75rem;
+        }
+
+        h5.card-title p {
+            margin-bottom: 0;
+        }
+
+        .form-group.row p {
+            margin-bottom: 0;
+            margin-top: 7px;
+        }
+
+        table th p, table td p {
+            margin-bottom: 0;
+        }
+
+        blockquote {
+            background-color: rgba(252, 252, 200, 0.5);
+            margin: 5px 0 1rem;
+            padding: 5px 5px 5px 10px;
+            border-left: 5px solid rgba(143, 188, 143, 0.5);
+            border-radius: 3px;
+        }
+
+        blockquote > *:last-child {
+            margin-bottom: 0;
+        }
+
+        .cf-required {
+            color: red;
+            font-weight: bold;
+        }
+
+        main > section.cf-use-case > .cf-extensions > ul {
+            padding-left: 1.9rem;
+        }
+
+        main > section.cf-use-case > .cf-extensions li {
+            list-style: none;
+            text-indent: -1.9rem;
+        }
+
+        main > section.cf-use-case > .cf-extensions > ul > li:not(:last-of-type) {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+    <style id="__print-style">
+        main > section {
+            display: none;
+            padding-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand navbar-light bg-light">
+    <a class="navbar-brand" href="https://casefu.com/" target="_blank" style="margin-top: -6px;"
+       title="Open CaseFu.com web site">
+        <img src="https://casefu.com/favicon.ico" height="25" />
+    </a>
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item pr-1">
+            <a class="nav-link" href="#__home">
+                <i class="fas fa-home"></i>
+            </a>
+        </li>
+        <li class="nav-item px-1">
+            <a class="nav-link" href="#__search">
+                <i class="fas fa-search"></i>
+            </a>
+        </li>
+    </ul>
+    <div class="btn-group-toggle">
+        <label class="btn btn-outline-secondary" title="Toggle print mode">
+            <input id="__print-button" type="checkbox" checked autocomplete="off">
+            <i class="fas fa-print"></i>
+        </label>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <main role="main">
+
+        <!--src/activity-proposal/ActivityProposal-Create.md-->
+<section id="/activity-propsals/create" class="cf-screen">
+<h2><i class="fas fa-desktop text-muted"></i> Create activity proposal <code>/activity-propsals/create</code></h2>
+<div class="card">
+<div class="card-body pb-0">
+<h3><i class="fas fa-list text-muted"></i> Mám chuť něco podniknout!</h3>
+<div class="form-group row">
+ <label class="col-sm-4 col-lg-3 col-form-label">Dal bych<span class="cf-required">&nbsp;*</span></label>
+ <div class="col-sm-7 col-lg-8">
+  <div class="form-check">
+   <input id="cf-aid-/activity-propsals/create-1" class="form-check-input" type="checkbox">
+   <label for="cf-aid-/activity-propsals/create-1" class="form-check-label">Pivo</label>
+  </div>
+  <div class="form-check">
+   <input id="cf-aid-/activity-propsals/create-2" class="form-check-input" type="checkbox">
+   <label for="cf-aid-/activity-propsals/create-2" class="form-check-label">Deskovky</label>
+  </div>
+  <div class="form-check">
+   <input id="cf-aid-/activity-propsals/create-3" class="form-check-input" type="checkbox">
+   <label for="cf-aid-/activity-propsals/create-3" class="form-check-label">Sport</label>
+  </div>
+  <div class="form-check">
+   <input id="cf-aid-/activity-propsals/create-4" class="form-check-input" type="checkbox">
+   <label for="cf-aid-/activity-propsals/create-4" class="form-check-label">Výlet</label>
+  </div>
+ </div>
+</div>
+<div class="form-group row">
+ <label for="cf-aid-/activity-propsals/create-5" class="col-sm-4 col-lg-3 col-form-label">Kde<span class="cf-required">&nbsp;*</span></label>
+ <div class="col-sm-7 col-lg-8">
+  <input id="cf-aid-/activity-propsals/create-5" type="text" class="form-control" placeholder="Kde" value="">
+  <small class="form-text text-muted">Kde budu</small>
+ </div>
+</div>
+<div class="form-group row">
+ <label for="cf-aid-/activity-propsals/create-6" class="col-sm-4 col-lg-3 col-form-label">Od<span class="cf-required">&nbsp;*</span></label>
+ <div class="col-sm-7 col-lg-8">
+  <div class="input-group">
+   <input id="cf-aid-/activity-propsals/create-6" type="text" class="form-control" placeholder="Od" value="">
+   <div class="input-group-append">
+    <span class="input-group-text"><i class="far fa-clock"></i></span>
+   </div>
+  </div>
+  <small class="form-text text-muted">Od kdy mám čas</small>
+ </div>
+</div>
+<div class="form-group row">
+ <label for="cf-aid-/activity-propsals/create-7" class="col-sm-4 col-lg-3 col-form-label">Do<span class="cf-required">&nbsp;*</span></label>
+ <div class="col-sm-7 col-lg-8">
+  <div class="input-group">
+   <input id="cf-aid-/activity-propsals/create-7" type="text" class="form-control" placeholder="Do" value="">
+   <div class="input-group-append">
+    <span class="input-group-text"><i class="far fa-clock"></i></span>
+   </div>
+  </div>
+  <small class="form-text text-muted">Do kdy mám čas</small>
+ </div>
+</div>
+<div class="form-group row">
+ <label for="cf-aid-/activity-propsals/create-8" class="col-sm-4 col-lg-3 col-form-label">Název<span class="cf-required">&nbsp;*</span></label>
+ <div class="col-sm-7 col-lg-8">
+  <input id="cf-aid-/activity-propsals/create-8" type="text" class="form-control" placeholder="Název" value="">
+  <small class="form-text text-muted">Co chci dělat - zaujmi skvělým nápadem</small>
+ </div>
+</div>
+<div class="form-group row">
+ <label for="cf-aid-/activity-propsals/create-9" class="col-sm-4 col-lg-3 col-form-label">Popis</label>
+ <div class="col-sm-7 col-lg-8">
+  <textarea id="cf-aid-/activity-propsals/create-9" rows="4" class="form-control" placeholder="Popis"></textarea>
+  <small class="form-text text-muted">Jak si to představuju - organizační detaily</small>
+ </div>
+</div>
+<div class="form-group row">
+<div class="offset-sm-4 offset-lg-3 col-sm-7 col-lg-8">
+<p><a href="#/activity-propsals" class="btn btn-primary" title="/activity-propsals">Najdi parťáky!</a></p>
+</div>
+</div>
+</div>
+</div>
+<div id="section-computed-/activity-propsals/create">
+<div id="section-refers-to-/activity-propsals/create">
+<strong>Refers to:</strong>
+<i class="fas fa-desktop text-muted"></i>&nbsp;<a href="#/activity-propsals" title="List activity proposals">List activity proposals</a>
+</div>
+<div id="section-referred-from-/activity-propsals/create">
+<strong>Referred from:</strong>
+<i class="fas fa-desktop text-muted"></i>&nbsp;<a href="#/activity-propsals" title="List activity proposals">List activity proposals</a>
+</div>
+</div>
+</section>
+<!--src/activity-proposal/ActivityProposal-List.md-->
+<section id="/activity-propsals" class="cf-screen">
+<h2><i class="fas fa-desktop text-muted"></i> List activity proposals <code>/activity-propsals</code></h2>
+<div class="card">
+<div class="card-body pb-0">
+<h3><i class="fas fa-table text-muted"></i> Podobné návrhy</h3>
+<table class="table table-bordered table-sm">
+<thead>
+<tr>
+<th>
+_
+</th>
+<th>
+Co
+</th>
+<th>
+Kde
+</th>
+<th>
+Kdy
+</th>
+<th>
+Název
+</th>
+<th>
+Kdo
+</th>
+</tr>
+</thead>
+<tr>
+<td>
+<p><a href="#/activity-propsals/match" class="btn btn-outline-secondary" title="/activity-propsals/match">To chci</a></p>
+</td>
+<td>
+<p>Pivo</p>
+</td>
+<td>
+<p>Vinohrady</p>
+</td>
+<td>
+<p>za 2 hodiny (<em>18:20 - 21:00, 19. 3. 2020</em>)</p>
+</td>
+<td>
+<p>V 7 na pivo v hospodě U Baby Jagy</p>
+</td>
+<td>
+<p>Franta</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="#/activity-propsals/match" class="btn btn-outline-secondary" title="/activity-propsals/match">To chci</a></p>
+</td>
+<td>
+<p>Sport</p>
+</td>
+<td>
+<p>Kobylisy</p>
+</td>
+<td>
+<p>zítra (<em>17:00 - 19:00, 20. 3. 2020</em>)</p>
+</td>
+<td>
+<p>Vždycky squash!</p>
+</td>
+<td>
+<p>Pepa</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="#/activity-propsals/match" class="btn btn-outline-secondary" title="/activity-propsals/match">To chci</a></p>
+</td>
+<td>
+<p>Pivo / Deskovky</p>
+</td>
+<td>
+<p>Prosek</p>
+</td>
+<td>
+<p>zítra (<em>19:00 - 22:00, 20. 3. 2020</em>)</p>
+</td>
+<td>
+</td>
+<td>
+<p>Fanouš</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<h3></h3>
+<p><a href="#/activity-propsals/create" class="btn btn-outline-secondary" title="/activity-propsals/create">Zpět</a></p>
+<div id="section-computed-/activity-propsals">
+<div id="section-refers-to-/activity-propsals">
+<strong>Refers to:</strong>
+<i class="fas fa-desktop text-muted"></i>&nbsp;<a href="#/activity-propsals/match" title="Activity proposal match">Activity proposal match</a>,
+<i class="fas fa-desktop text-muted"></i>&nbsp;<a href="#/activity-propsals/create" title="Create activity proposal">Create activity proposal</a>
+</div>
+<div id="section-referred-from-/activity-propsals">
+<strong>Referred from:</strong>
+<i class="fas fa-desktop text-muted"></i>&nbsp;<a href="#/activity-propsals/create" title="Create activity proposal">Create activity proposal</a>,
+<i class="fas fa-desktop text-muted"></i>&nbsp;<a href="#/activity-propsals/match" title="Activity proposal match">Activity proposal match</a>
+</div>
+</div>
+</section>
+<!--src/activity-proposal/ActivityProposal-Match.md-->
+<section id="/activity-propsals/match" class="cf-screen">
+<h2><i class="fas fa-desktop text-muted"></i> Activity proposal match <code>/activity-propsals/match</code></h2>
+<div class="card">
+<div class="card-body pb-0">
+<h3><i class="fas fa-list text-muted"></i> Návrh</h3>
+<div class="form-group row">
+ <label class="col-sm-4 col-lg-3 col-form-label">Co</label>
+ <div class="col-sm-7 col-lg-8">
+<p>Pivo</p>
+ </div>
+</div>
+<div class="form-group row">
+ <label class="col-sm-4 col-lg-3 col-form-label">Kde</label>
+ <div class="col-sm-7 col-lg-8">
+<p>Vinohrady</p>
+ </div>
+</div>
+<div class="form-group row">
+ <label class="col-sm-4 col-lg-3 col-form-label">Kdy</label>
+ <div class="col-sm-7 col-lg-8">
+<p>za 2 hodiny (<em>18:20 -- 21:00, 19. 3. 2020</em>)</p>
+ </div>
+</div>
+<div class="form-group row">
+ <label class="col-sm-4 col-lg-3 col-form-label">Název</label>
+ <div class="col-sm-7 col-lg-8">
+<p>V 7 na pivo v hospodě U Baby Jagy</p>
+ </div>
+</div>
+<div class="form-group row">
+ <label class="col-sm-4 col-lg-3 col-form-label">Popis</label>
+ <div class="col-sm-7 col-lg-8">
+<p>Zarezervuju stůl na jméno Franta</p>
+ </div>
+</div>
+<div class="form-group row">
+ <label class="col-sm-4 col-lg-3 col-form-label">Kdo</label>
+ <div class="col-sm-7 col-lg-8">
+<p>Franta, Pepa, Ferda</p>
+ </div>
+</div>
+<div class="form-group row">
+<div class="offset-sm-4 offset-lg-3 col-sm-7 col-lg-8">
+<p><button type="button" class="btn btn-primary"><i class="fas fa-check"></i> Přijdu</button> <button type="button" class="btn btn-outline-secondary"><i class="fas fa-times"></i> Nepřijdu</button></p>
+</div>
+</div>
+<blockquote>
+<div class="form-group row">
+ <label class="col-sm-4 col-lg-3 col-form-label">NOT visible for the proposal owner</label>
+ <div class="col-sm-7 col-lg-8">
+<p></p>
+ </div>
+</div>
+</blockquote>
+<div class="form-group row">
+<div class="offset-sm-4 offset-lg-3 col-sm-7 col-lg-8">
+<p><a href="#/activities/create" class="btn btn-primary" title="/activities/create"><i class="fas fa-check"></i> Potvrdit</a> Dohodli jste se? Potvrďte aktivitu.</p>
+</div>
+</div>
+<blockquote>
+<div class="form-group row">
+ <label class="col-sm-4 col-lg-3 col-form-label">Only visible for the proposal owner</label>
+ <div class="col-sm-7 col-lg-8">
+<p></p>
+ </div>
+</div>
+</blockquote>
+<div class="form-group row">
+<div class="offset-sm-4 offset-lg-3 col-sm-7 col-lg-8">
+<p><a href="#/activity-propsals" class="btn btn-outline-secondary" title="/activity-propsals">Zpět</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-body pb-0">
+<h3><i class="fas fa-table text-muted"></i> Diskuze</h3>
+<table class="table table-bordered table-sm">
+<thead>
+<tr>
+<th>
+Kdo
+</th>
+<th>
+Kdy
+</th>
+<th>
+Text
+</th>
+</tr>
+</thead>
+<tr>
+<td>
+<p>Pepa</p>
+</td>
+<td>
+<p>včera (<em>10:45, 18. 3. 2020</em>)</p>
+</td>
+<td>
+<p>Já bych mohl v 1845, budeš tam ještě?</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Franta</p>
+</td>
+<td>
+<p>včera (<em>11:20, 18. 3. 2020</em>)</p>
+</td>
+<td>
+<p>Jasně</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Pepa</p>
+</td>
+<td>
+<p>před 10 minutami (<em>16:30</em>)</p>
+</td>
+<td>
+<p>Tak nakonec dorazím už na začátek</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="card">
+<div class="card-body pb-0">
+<h3><i class="fas fa-list text-muted"></i> Nová zpráva</h3>
+<div class="form-group row">
+ <label for="cf-aid-/activity-propsals/match-1" class="col-sm-4 col-lg-3 col-form-label">Text<span class="cf-required">&nbsp;*</span></label>
+ <div class="col-sm-7 col-lg-8">
+  <input id="cf-aid-/activity-propsals/match-1" type="text" class="form-control" placeholder="Text" value="">
+ </div>
+</div>
+<div class="form-group row">
+<div class="offset-sm-4 offset-lg-3 col-sm-7 col-lg-8">
+<p><button type="button" class="btn btn-outline-secondary"><i class="fas fa-paper-plane"></i></button></p>
+</div>
+</div>
+</div>
+</div>
+<div id="section-computed-/activity-propsals/match">
+<div id="section-refers-to-/activity-propsals/match">
+<strong>Refers to:</strong>
+<i class="fas fa-desktop text-muted"></i>&nbsp;<a href="#/activities/create" title="Create activity">Create activity</a>,
+<i class="fas fa-desktop text-muted"></i>&nbsp;<a href="#/activity-propsals" title="List activity proposals">List activity proposals</a>
+</div>
+<div id="section-referred-from-/activity-propsals/match">
+<strong>Referred from:</strong>
+<i class="fas fa-desktop text-muted"></i>&nbsp;<a href="#/activity-propsals" title="List activity proposals">List activity proposals</a>,
+<i class="fas fa-desktop text-muted"></i>&nbsp;<a href="#/activities/create" title="Create activity">Create activity</a>
+</div>
+</div>
+</section>
+<!--src/activity/Activity-Create.md-->
+<section id="/activities/create" class="cf-screen">
+<h2><i class="fas fa-desktop text-muted"></i> Create activity <code>/activities/create</code></h2>
+<div class="card">
+<div class="card-body pb-0">
+<h3><i class="fas fa-list text-muted"></i> Jdeme na to</h3>
+<div class="form-group row">
+ <label class="col-sm-4 col-lg-3 col-form-label">Dáme<span class="cf-required">&nbsp;*</span></label>
+ <div class="col-sm-7 col-lg-8">
+  <div class="form-check">
+   <input id="cf-aid-/activities/create-1" class="form-check-input" type="radio" name="cf-aid-/activities/create-1" value="Pivo" checked>
+   <label for="cf-aid-/activities/create-1" class="form-check-label">Pivo</label>
+  </div>
+  <div class="form-check">
+   <input id="cf-aid-/activities/create-2" class="form-check-input" type="radio" name="cf-aid-/activities/create-1" value="Deskovky">
+   <label for="cf-aid-/activities/create-2" class="form-check-label">Deskovky</label>
+  </div>
+  <div class="form-check">
+   <input id="cf-aid-/activities/create-3" class="form-check-input" type="radio" name="cf-aid-/activities/create-1" value="Sport">
+   <label for="cf-aid-/activities/create-3" class="form-check-label">Sport</label>
+  </div>
+  <div class="form-check">
+   <input id="cf-aid-/activities/create-4" class="form-check-input" type="radio" name="cf-aid-/activities/create-1" value="Výlet">
+   <label for="cf-aid-/activities/create-4" class="form-check-label">Výlet</label>
+  </div>
+ </div>
+</div>
+<div class="form-group row">
+ <label for="cf-aid-/activities/create-5" class="col-sm-4 col-lg-3 col-form-label">Kde<span class="cf-required">&nbsp;*</span></label>
+ <div class="col-sm-7 col-lg-8">
+  <input id="cf-aid-/activities/create-5" type="text" class="form-control" placeholder="Kde" value="Hospoda U Baby Jagy">
+  <small class="form-text text-muted">Kde se to koná</small>
+ </div>
+</div>
+<div class="form-group row">
+ <label for="cf-aid-/activities/create-6" class="col-sm-4 col-lg-3 col-form-label">Od<span class="cf-required">&nbsp;*</span></label>
+ <div class="col-sm-7 col-lg-8">
+  <div class="input-group">
+   <input id="cf-aid-/activities/create-6" type="text" class="form-control" placeholder="Od" value="18:20, 19. 3. 2020">
+   <div class="input-group-append">
+    <span class="input-group-text"><i class="far fa-clock"></i></span>
+   </div>
+  </div>
+  <small class="form-text text-muted">V kolik začínáme</small>
+ </div>
+</div>
+<div class="form-group row">
+ <label for="cf-aid-/activities/create-7" class="col-sm-4 col-lg-3 col-form-label">Do</label>
+ <div class="col-sm-7 col-lg-8">
+  <div class="input-group">
+   <input id="cf-aid-/activities/create-7" type="text" class="form-control" placeholder="Do" value="21:00, 19. 3. 2020">
+   <div class="input-group-append">
+    <span class="input-group-text"><i class="far fa-clock"></i></span>
+   </div>
+  </div>
+  <small class="form-text text-muted">V kolik končíme</small>
+ </div>
+</div>
+<div class="form-group row">
+ <label for="cf-aid-/activities/create-8" class="col-sm-4 col-lg-3 col-form-label">Název<span class="cf-required">&nbsp;*</span></label>
+ <div class="col-sm-7 col-lg-8">
+  <input id="cf-aid-/activities/create-8" type="text" class="form-control" placeholder="Název" value="Na pivo v hospodě U Baby Jagy">
+  <small class="form-text text-muted">Co budeme dělat</small>
+ </div>
+</div>
+<div class="form-group row">
+ <label for="cf-aid-/activities/create-9" class="col-sm-4 col-lg-3 col-form-label">Popis</label>
+ <div class="col-sm-7 col-lg-8">
+  <textarea id="cf-aid-/activities/create-9" rows="4" class="form-control" placeholder="Popis">Zarezervuju stůl na jméno Franta</textarea>
+  <small class="form-text text-muted">Jak to uděláme - organizační detaily</small>
+ </div>
+</div>
+<div class="form-group row">
+<div class="offset-sm-4 offset-lg-3 col-sm-7 col-lg-8">
+<p><button type="button" class="btn btn-primary"><i class="fas fa-save"></i> Uložit</button></p>
+</div>
+</div>
+<div class="form-group row">
+<div class="offset-sm-4 offset-lg-3 col-sm-7 col-lg-8">
+<p><a href="#/activity-propsals/match" class="btn btn-outline-secondary" title="/activity-propsals/match">Zpět</a></p>
+</div>
+</div>
+</div>
+</div>
+<div id="section-computed-/activities/create">
+<div id="section-refers-to-/activities/create">
+<strong>Refers to:</strong>
+<i class="fas fa-desktop text-muted"></i>&nbsp;<a href="#/activity-propsals/match" title="Activity proposal match">Activity proposal match</a>
+</div>
+<div id="section-referred-from-/activities/create">
+<strong>Referred from:</strong>
+<i class="fas fa-desktop text-muted"></i>&nbsp;<a href="#/activity-propsals/match" title="Activity proposal match">Activity proposal match</a>
+</div>
+</div>
+</section>
+<!--src/index.md-->
+<section id="__home">
+<h1>PivoSpolu.cz FSD</h1>
+<h2>Menu</h2>
+<ul>
+<li><a href="#/activity-propsals/create" title="/activity-propsals/create">Navrhnout aktivitu</a></li>
+</ul>
+</section>
+<section id="__search">
+<form>
+<div class="form-row mb-3">
+<div class="input-group mx-2">
+<div class="input-group-prepend">
+<span class="input-group-text">
+<i class="fas fa-search text-muted"></i>
+</span>
+</div>
+<input id="__search-text" type="text" class="form-control"
+placeholder="Start typing to search..." />
+</div>
+</div>
+</form>
+<h2><i class="fas fa-desktop text-muted"></i> Screens</h2>
+<ul>
+<li class="__search-item" id="__search-item-/activity-propsals/create">
+<a href="#/activity-propsals/create" class="mr-3">Create activity proposal</a> <code>/activity-propsals/create</code>
+</li>
+<li class="__search-item" id="__search-item-/activity-propsals">
+<a href="#/activity-propsals" class="mr-3">List activity proposals</a> <code>/activity-propsals</code>
+</li>
+<li class="__search-item" id="__search-item-/activity-propsals/match">
+<a href="#/activity-propsals/match" class="mr-3">Activity proposal match</a> <code>/activity-propsals/match</code>
+</li>
+<li class="__search-item" id="__search-item-/activities/create">
+<a href="#/activities/create" class="mr-3">Create activity</a> <code>/activities/create</code>
+</li>
+
+</ul>
+<h2><i class="fas fa-database text-muted"></i> Entities</h2>
+<ul>
+
+</ul>
+<h2><i class="fas fa-user text-muted"></i> Actors</h2>
+<ul>
+
+</ul>
+<h2><i class="fas fa-list-alt text-muted"></i> Use cases</h2>
+<ul>
+
+</ul>
+</section>
+
+
+    </main>
+</div>
+
+<script>
+  window.addEventListener("load", function () {
+    var searchText = document.getElementById('__search-text')
+    if (searchText) {
+      searchText.oninput = function (event) {
+        var query = event.target.value
+        var items = document.getElementsByClassName('__search-item')
+        for (var i = 0; i < items.length; i++) {
+          var item = items[i]
+          var itemId = item.id
+          var code = itemId.substr('__search-item-'.length)
+          var section = document.getElementById(code)
+          var matches = !query.trim() || section.innerHTML.toLowerCase().indexOf(query.toLowerCase()) > -1
+          item.style.display = matches ? 'list-item' : 'none'
+        }
+      }
+      searchText.focus()
+    }
+
+    var printButton = document.getElementById('__print-button')
+    var printLabel = printButton.parentNode
+    var printStyle = document.getElementById('__print-style')
+    var printMode = false
+    printButton.onclick = function (event) {
+      event.preventDefault()
+      if (printMode) {
+        printStyle.innerHTML = 'main > section { display: none; padding-bottom: 2rem; }'
+        printLabel.classList.remove('active')
+      } else {
+        printStyle.innerHTML = ''
+        printLabel.classList.add('active')
+      }
+      printMode = !printMode
+    }
+
+    window.onhashchange = function () {
+      if (location.hash === '#__search') {
+        searchText.focus()
+      }
+    }
+
+    if (!window.location.hash) {
+      window.location.hash = '__home'
+    }
+  })
+</script>
+
+</body>
+</html>
