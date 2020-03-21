@@ -2,4 +2,4 @@
 
 ## Menu
 
-- [Navrhnout aktivitu](#/activity-propsals/create)
+- [Můj přehled](#/overview)
