@@ -1,5 +1,20 @@
 ## Screen: List activities `/activities`
 
+### Form:
+
+- Kde (R)
+- Od (time)
+- Do (time)
+- [:Dnes]() [:Zítra]() [:Víkend]()
+- [:Dopoledne]() [:Odpoledne]() [: Večer]()
+
+> Show all records with non-empty overlap
+
+- Co (select: Pivo, Deskovky, Sport, Výlet)
+- Hledat
+
+> Match search term in Activity Name
+
 ### Table: Aktivity
 
 - _
@@ -9,7 +24,7 @@
 - Co
     - Pivo
     - Sport
-    - Pivo / Deskovky
+    - Deskovky
 - Kdy
     - za 2 hodiny (_18:20 - 21:00, 19. 3. 2020_)
     - zítra (_17:00 - 19:00, 20. 3. 2020_)
@@ -21,10 +36,13 @@
 - Název
     - V 7 na pivo
     - Vždycky squash!
+    - Krycí jména
 - Kdo
     - Franta
     - Pepa
     - Fanouš
+
+> Sort by distance from Where.
 
 ### 
 

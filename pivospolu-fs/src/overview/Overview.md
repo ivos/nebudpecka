@@ -12,11 +12,11 @@
     - Ano
     - Ano
     - Ne
-- Potvrzeno
-    - Ano
-    - Ano
-    - Ne
-    - Ne
+- Status
+    - Potvrzeno
+    - Potvrzeno
+    - Návrh
+    - Návrh
 - Kdy
     - za 10 minut (_16:30 - 17:30, 19. 3. 2020_)
     - za 2 hodiny (_18:20 - 21:00, 19. 3. 2020_)
@@ -37,6 +37,8 @@
     - V 7 na pivo
     - Squash
     - Hospoda
+
+> Sort by Start time.
 
 ### 
 

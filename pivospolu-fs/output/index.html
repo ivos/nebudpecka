@@ -276,7 +276,32 @@ Sets Status = Confirmed.</p>
 </blockquote>
 <div class="form-group row">
 <div class="offset-sm-4 offset-lg-3 col-sm-7 col-lg-8">
-<p><a href="#/activities" class="btn btn-outline-secondary" title="/activities">Zpět</a></p>
+<p><button type="button" class="btn btn-outline-secondary">Zrušit</button></p>
+</div>
+</div>
+<blockquote>
+<p>Only visible for the proposal owner.
+Enabled in Status = Proposal, Confirmed.
+Sets Status = Canceled.</p>
+</blockquote>
+<div class="form-group row">
+<div class="offset-sm-4 offset-lg-3 col-sm-7 col-lg-8">
+<p><button type="button" class="btn btn-outline-secondary">Vrátit</button> Vrátit aktivitu zpět do stavu Návrh.</p>
+</div>
+</div>
+<blockquote>
+<p>Only visible for the proposal owner.
+Enabled in Status = Confirmed, Canceled.
+Sets Status = Proposal    .</p>
+</blockquote>
+<div class="form-group row">
+<div class="offset-sm-4 offset-lg-3 col-sm-7 col-lg-8">
+<p><a href="#/activities" class="btn btn-outline-secondary" title="/activities">Najít jinout</a></p>
+</div>
+</div>
+<div class="form-group row">
+<div class="offset-sm-4 offset-lg-3 col-sm-7 col-lg-8">
+<p><a href="#/overview" class="btn btn-outline-secondary" title="/overview">Přehled</a></p>
 </div>
 </div>
 </div>
@@ -354,7 +379,8 @@ Text
 <div id="section-refers-to-/activities/detail">
 <strong>Refers to:</strong>
 <i class="fas fa-desktop text-muted"></i>&nbsp;<a href="#/activities/edit" title="Edit activity">Edit activity</a>,
-<i class="fas fa-desktop text-muted"></i>&nbsp;<a href="#/activities" title="List activities">List activities</a>
+<i class="fas fa-desktop text-muted"></i>&nbsp;<a href="#/activities" title="List activities">List activities</a>,
+<i class="fas fa-desktop text-muted"></i>&nbsp;<a href="#/overview" title="Overview">Overview</a>
 </div>
 <div id="section-referred-from-/activities/detail">
 <strong>Referred from:</strong>
@@ -464,6 +490,73 @@ Text
 <h2><i class="fas fa-desktop text-muted"></i> List activities <code>/activities</code></h2>
 <div class="card">
 <div class="card-body pb-0">
+<h3><i class="fas fa-list text-muted"></i> </h3>
+<div class="form-group row">
+ <label for="cf-aid-/activities-1" class="col-sm-4 col-lg-3 col-form-label">Kde<span class="cf-required">&nbsp;*</span></label>
+ <div class="col-sm-7 col-lg-8">
+  <input id="cf-aid-/activities-1" type="text" class="form-control" placeholder="Kde" value="">
+ </div>
+</div>
+<div class="form-group row">
+ <label for="cf-aid-/activities-2" class="col-sm-4 col-lg-3 col-form-label">Od</label>
+ <div class="col-sm-7 col-lg-8">
+  <div class="input-group">
+   <input id="cf-aid-/activities-2" type="text" class="form-control" placeholder="Od" value="">
+   <div class="input-group-append">
+    <span class="input-group-text"><i class="far fa-clock"></i></span>
+   </div>
+  </div>
+ </div>
+</div>
+<div class="form-group row">
+ <label for="cf-aid-/activities-3" class="col-sm-4 col-lg-3 col-form-label">Do</label>
+ <div class="col-sm-7 col-lg-8">
+  <div class="input-group">
+   <input id="cf-aid-/activities-3" type="text" class="form-control" placeholder="Do" value="">
+   <div class="input-group-append">
+    <span class="input-group-text"><i class="far fa-clock"></i></span>
+   </div>
+  </div>
+ </div>
+</div>
+<div class="form-group row">
+<div class="offset-sm-4 offset-lg-3 col-sm-7 col-lg-8">
+<p><button type="button" class="btn btn-outline-secondary">Dnes</button> <button type="button" class="btn btn-outline-secondary">Zítra</button> <button type="button" class="btn btn-outline-secondary">Víkend</button></p>
+</div>
+</div>
+<div class="form-group row">
+<div class="offset-sm-4 offset-lg-3 col-sm-7 col-lg-8">
+<p><button type="button" class="btn btn-outline-secondary">Dopoledne</button> <button type="button" class="btn btn-outline-secondary">Odpoledne</button> <button type="button" class="btn btn-outline-secondary">Večer</button></p>
+</div>
+</div>
+<blockquote>
+<p>Show all records with non-empty overlap</p>
+</blockquote>
+<div class="form-group row">
+ <label for="cf-aid-/activities-4" class="col-sm-4 col-lg-3 col-form-label">Co</label>
+ <div class="col-sm-7 col-lg-8">
+  <select id="cf-aid-/activities-4" class="form-control">
+   <option></option>
+   <option>Pivo</option>
+   <option>Deskovky</option>
+   <option>Sport</option>
+   <option>Výlet</option>
+  </select>
+ </div>
+</div>
+<div class="form-group row">
+ <label for="cf-aid-/activities-5" class="col-sm-4 col-lg-3 col-form-label">Hledat</label>
+ <div class="col-sm-7 col-lg-8">
+  <input id="cf-aid-/activities-5" type="text" class="form-control" placeholder="Hledat" value="">
+ </div>
+</div>
+<blockquote>
+<p>Match search term in Activity Name</p>
+</blockquote>
+</div>
+</div>
+<div class="card">
+<div class="card-body pb-0">
 <h3><i class="fas fa-table text-muted"></i> Aktivity</h3>
 <table class="table table-bordered table-sm">
 <thead>
@@ -533,7 +626,7 @@ Kdo
 <p><a href="#/activities/detail" class="btn btn-outline-secondary" title="/activities/detail">To chci</a></p>
 </td>
 <td>
-<p>Pivo / Deskovky</p>
+<p>Deskovky</p>
 </td>
 <td>
 <p>zítra (<em>19:00 - 22:00, 20. 3. 2020</em>)</p>
@@ -542,12 +635,16 @@ Kdo
 <p>Prosek (4 km)</p>
 </td>
 <td>
+<p>Krycí jména</p>
 </td>
 <td>
 <p>Fanouš</p>
 </td>
 </tr>
 </table>
+<blockquote>
+<p>Sort by distance from Where.</p>
+</blockquote>
 </div>
 </div>
 <h3></h3>
@@ -589,7 +686,7 @@ _
 Organizuju
 </th>
 <th>
-Potvrzeno
+Status
 </th>
 <th>
 Kdy
@@ -613,7 +710,7 @@ Název
 <p>Ne</p>
 </td>
 <td>
-<p>Ano</p>
+<p>Potvrzeno</p>
 </td>
 <td>
 <p>za 10 minut (<em>16:30 - 17:30, 19. 3. 2020</em>)</p>
@@ -636,7 +733,7 @@ Název
 <p>Ano</p>
 </td>
 <td>
-<p>Ano</p>
+<p>Potvrzeno</p>
 </td>
 <td>
 <p>za 2 hodiny (<em>18:20 - 21:00, 19. 3. 2020</em>)</p>
@@ -659,7 +756,7 @@ Název
 <p>Ano</p>
 </td>
 <td>
-<p>Ne</p>
+<p>Návrh</p>
 </td>
 <td>
 <p>zítra (<em>17:00 - 19:00, 20. 3. 2020</em>)</p>
@@ -682,7 +779,7 @@ Název
 <p>Ne</p>
 </td>
 <td>
-<p>Ne</p>
+<p>Návrh</p>
 </td>
 <td>
 <p>za 2 dny (<em>17:00 - 19:00, 21. 3. 2020</em>)</p>
@@ -698,6 +795,9 @@ Název
 </td>
 </tr>
 </table>
+<blockquote>
+<p>Sort by Start time.</p>
+</blockquote>
 </div>
 </div>
 <h3></h3>
@@ -713,6 +813,7 @@ Název
 <div id="section-referred-from-/overview">
 <strong>Referred from:</strong>
 <i class="fas fa-desktop text-muted"></i>&nbsp;<a href="#/activities/create" title="Create activity">Create activity</a>,
+<i class="fas fa-desktop text-muted"></i>&nbsp;<a href="#/activities/detail" title="Activity detail">Activity detail</a>,
 <i class="fas fa-desktop text-muted"></i>&nbsp;<a href="#/activities" title="List activities">List activities</a>
 </div>
 </div>

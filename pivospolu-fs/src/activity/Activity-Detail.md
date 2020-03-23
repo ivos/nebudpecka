@@ -24,7 +24,20 @@
 > Enabled in Status = Proposal.
 > Sets Status = Confirmed.
 
-- [: Zpět](#/activities)
+- [: Zrušit]()
+
+> Only visible for the proposal owner.
+> Enabled in Status = Proposal, Confirmed.
+> Sets Status = Canceled.
+
+- [: Vrátit]() Vrátit aktivitu zpět do stavu Návrh.
+
+> Only visible for the proposal owner.
+> Enabled in Status = Confirmed, Canceled.
+> Sets Status = Proposal    .
+
+- [: Najít jinout](#/activities)
+- [: Přehled](#/overview)
 
 ### Table: Diskuze
 
