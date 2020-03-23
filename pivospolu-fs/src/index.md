@@ -3,3 +3,8 @@
 ## Menu
 
 - [Můj přehled](#/overview)
+
+## Datový model
+
+- `#Activity`
+- `#User`

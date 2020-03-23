@@ -104,7 +104,56 @@
 <div class="container-fluid">
     <main role="main">
 
-        <!--src/activity/Activity-Create.md-->
+        <!--src/activity-type/ActivityType.md-->
+<section id="ActivityType" class="cf-entity">
+<h2><i class="fas fa-database text-muted"></i> Activity type <code>ActivityType</code></h2>
+<h3>Attributes:</h3>
+<table class="table table-bordered table-hover">
+<thead>
+<tr>
+<th>Name</th>
+<th>Status</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id<code class="float-right">id</code></td>
+<td title="Auto-generated primary key"><span class="badge badge-danger">APK</span></td>
+<td>
+<p>bigint</p>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>Version<code class="float-right">version</code></td>
+<td title="Mandatory"><span class="badge badge-primary">M</span></td>
+<td>
+<p>bigint</p>
+</td>
+<td>
+<p>Optimistic lock</p>
+</td>
+</tr>
+<tr>
+<td>Name<code class="float-right">name</code></td>
+<td title="Mandatory"><span class="badge badge-primary">M</span></td>
+<td>
+<p>string 100</p>
+</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div id="section-computed-ActivityType">
+<div id="section-referred-from-ActivityType">
+<strong>Referred from:</strong>
+<i class="fas fa-database text-muted"></i>&nbsp;<a href="#Activity" title="Activity">Activity</a>
+</div>
+</div>
+</section>
+<!--src/activity/Activity-Create.md-->
 <section id="/activities/create" class="cf-screen">
 <h2><i class="fas fa-desktop text-muted"></i> Create activity <code>/activities/create</code></h2>
 <div class="card">
@@ -662,12 +711,149 @@ Kdo
 </div>
 </div>
 </section>
+<!--src/activity/Activity.md-->
+<section id="Activity" class="cf-entity">
+<h2><i class="fas fa-database text-muted"></i> Activity <code>Activity</code></h2>
+<h3>Attributes:</h3>
+<table class="table table-bordered table-hover">
+<thead>
+<tr>
+<th>Name</th>
+<th>Status</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id<code class="float-right">id</code></td>
+<td title="Auto-generated primary key"><span class="badge badge-danger">APK</span></td>
+<td>
+<p>bigint</p>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>Version<code class="float-right">version</code></td>
+<td title="Mandatory"><span class="badge badge-primary">M</span></td>
+<td>
+<p>bigint</p>
+</td>
+<td>
+<p>Optimistic lock</p>
+</td>
+</tr>
+<tr>
+<td>Owner<code class="float-right">owner</code></td>
+<td>n : 1</td>
+<td>
+<p><a href="#User" title="User">User</a></p>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>Status<code class="float-right">status</code></td>
+<td title="Mandatory"><span class="badge badge-primary">M</span></td>
+<td>
+<p>enum</p>
+</td>
+<td>
+<p>Proposal, Confirmed, Canceled</p>
+</td>
+</tr>
+<tr>
+<td>Type<code class="float-right">type</code></td>
+<td>n : 1</td>
+<td>
+<p><a href="#ActivityType" title="ActivityType">ActivityType</a></p>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>Location name<code class="float-right">locationName</code></td>
+<td title="Mandatory"><span class="badge badge-primary">M</span></td>
+<td>
+<p>string 200</p>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>Latitude<code class="float-right">latitude</code></td>
+<td title="Mandatory"><span class="badge badge-primary">M</span></td>
+<td>
+<p>decimal 2 + 15</p>
+</td>
+<td>
+<p>0 .. 90</p>
+</td>
+</tr>
+<tr>
+<td>Longitude<code class="float-right">longitude</code></td>
+<td title="Mandatory"><span class="badge badge-primary">M</span></td>
+<td>
+<p>longitude 3 + 15</p>
+</td>
+<td>
+<p>-180 .. +180</p>
+</td>
+</tr>
+<tr>
+<td>Start time<code class="float-right">startTime</code></td>
+<td title="Mandatory"><span class="badge badge-primary">M</span></td>
+<td>
+<p>datetime</p>
+</td>
+<td>
+<p>Precision: minute</p>
+</td>
+</tr>
+<tr>
+<td>End time<code class="float-right">endTime</code></td>
+<td title="Mandatory"><span class="badge badge-primary">M</span></td>
+<td>
+<p>datetime</p>
+</td>
+<td>
+<p>Precision: minute</p>
+</td>
+</tr>
+<tr>
+<td>Name<code class="float-right">name</code></td>
+<td title="Mandatory"><span class="badge badge-primary">M</span></td>
+<td>
+<p>string 100</p>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>Description<code class="float-right">description</code></td>
+<td title="Optional"><span class="badge badge-success">O</span></td>
+<td>
+<p>string</p>
+</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div id="section-computed-Activity">
+<div id="section-refers-to-Activity">
+<strong>Refers to:</strong>
+<i class="fas fa-database text-muted"></i>&nbsp;<a href="#User" title="User">User</a>,
+<i class="fas fa-database text-muted"></i>&nbsp;<a href="#ActivityType" title="Activity type">Activity type</a>
+</div>
+</div>
+</section>
 <!--src/index.md-->
 <section id="__home">
 <h1>PivoSpolu.cz FSD</h1>
 <h2>Menu</h2>
 <ul>
 <li><a href="#/overview" title="/overview">Můj přehled</a></li>
+</ul>
+<h2>Datový model</h2>
+<ul>
+<li><a href="#Activity" title="Activity">Activity</a></li>
+<li><a href="#User" title="User">User</a></li>
 </ul>
 </section>
 <!--src/overview/Overview.md-->
@@ -818,6 +1004,61 @@ Název
 </div>
 </div>
 </section>
+<!--src/user/User.md-->
+<section id="User" class="cf-entity">
+<h2><i class="fas fa-database text-muted"></i> User <code>User</code></h2>
+<h3>Attributes:</h3>
+<table class="table table-bordered table-hover">
+<thead>
+<tr>
+<th>Name</th>
+<th>Status</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Id<code class="float-right">id</code></td>
+<td title="Auto-generated primary key"><span class="badge badge-danger">APK</span></td>
+<td>
+<p>bigint</p>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>Version<code class="float-right">version</code></td>
+<td title="Mandatory"><span class="badge badge-primary">M</span></td>
+<td>
+<p>bigint</p>
+</td>
+<td>
+<p>Optimistic lock</p>
+</td>
+</tr>
+<tr>
+<td>Name<code class="float-right">name</code></td>
+<td title="Mandatory"><span class="badge badge-primary">M</span></td>
+<td>
+<p>string 100</p>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>Email<code class="float-right">email</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div id="section-computed-User">
+<div id="section-referred-from-User">
+<strong>Referred from:</strong>
+<i class="fas fa-database text-muted"></i>&nbsp;<a href="#Activity" title="Activity">Activity</a>
+</div>
+</div>
+</section>
 <section id="__search">
 <form>
 <div class="form-row mb-3">
@@ -853,6 +1094,15 @@ placeholder="Start typing to search..." />
 </ul>
 <h2><i class="fas fa-database text-muted"></i> Entities</h2>
 <ul>
+<li class="__search-item" id="__search-item-ActivityType">
+<a href="#ActivityType" class="mr-3">Activity type</a> <code>ActivityType</code>
+</li>
+<li class="__search-item" id="__search-item-Activity">
+<a href="#Activity" class="mr-3">Activity</a> <code>Activity</code>
+</li>
+<li class="__search-item" id="__search-item-User">
+<a href="#User" class="mr-3">User</a> <code>User</code>
+</li>
 
 </ul>
 <h2><i class="fas fa-user text-muted"></i> Actors</h2>
