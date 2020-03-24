@@ -1,0 +1,17 @@
+<configuration scan="true">
+	<include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+	<logger name="cz.lastware.pivospolu" level="debug"/>
+
+	<!--debug SQL statements-->
+	<!--<logger name="org.hibernate.SQL" level="debug" />-->
+	<!--debug SQL arguments-->
+	<!--<logger name="org.hibernate" level="trace" />-->
+
+	<!--<logger name="org.springframework.transaction" level="trace"/>-->
+	<!--<logger name="org.springframework.orm" level="debug"/>-->
+	<!--<logger name="org.hibernate.engine.transaction" level="debug"/>-->
+	<!--show transactions-->
+	<!--<logger name="org.springframework.orm.jpa.JpaTransactionManager" level="debug"/>-->
+
+</configuration>
