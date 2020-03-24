@@ -1,5 +1,6 @@
 package cz.lastware.pivospolu.config;
 
+import cz.lastware.pivospolu.validation.DataIntegrityExceptionHandler;
 import cz.lastware.pivospolu.validation.ValidationError;
 import cz.lastware.pivospolu.validation.ValidationException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -13,12 +14,17 @@ import javax.persistence.OptimisticLockException;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 @ControllerAdvice("cz.lastware.pivospolu")
 public class ExceptionHandler {
 
-//	@Autowired
-//	private List<DataIntegrityExceptionHandler> dataIntegrityExceptionHandlers;
+	private final List<DataIntegrityExceptionHandler> dataIntegrityExceptionHandlers;
+
+	public ExceptionHandler(List<DataIntegrityExceptionHandler> dataIntegrityExceptionHandlers) {
+		this.dataIntegrityExceptionHandlers = dataIntegrityExceptionHandlers;
+	}
 
 	private ErrorResponse createErrorResponse(HttpServletRequest request, HttpStatus status) {
 		ErrorResponse errorResponse = new ErrorResponse();
@@ -44,13 +50,11 @@ public class ExceptionHandler {
 		HttpStatus status = HttpStatus.UNPROCESSABLE_ENTITY;
 		ErrorResponse errorResponse = createErrorResponse(request, status);
 		ValidationError validationError =
-//				dataIntegrityExceptionHandlers.stream()
-//				.map(handler -> handler.handle(exception))
-//				.filter(Objects::nonNull)
-//				.findFirst()
-//				.orElse(
-				new ValidationError(null, null, exception.getMostSpecificCause().getMessage());
-//				);
+				dataIntegrityExceptionHandlers.stream()
+						.map(handler -> handler.handle(exception))
+						.filter(Objects::nonNull)
+						.findFirst()
+						.orElse(new ValidationError(null, null, exception.getMostSpecificCause().getMessage()));
 		errorResponse.setErrors(Collections.singletonList(validationError));
 		return new ResponseEntity<>(errorResponse, status);
 	}

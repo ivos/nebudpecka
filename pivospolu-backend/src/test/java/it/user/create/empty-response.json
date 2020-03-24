@@ -1,0 +1,21 @@
+{
+  "timestamp": "REPLACED",
+  "status": 422,
+  "error": "Unprocessable Entity",
+  "path": "/api/users",
+  "errors": [
+    {
+      "path": "email",
+      "value": null,
+      "errorCode": "must.not.be.null"
+    }, {
+      "path": "name",
+      "value": null,
+      "errorCode": "must.not.be.null"
+    }, {
+      "path": "password",
+      "value": null,
+      "errorCode": "must.not.be.null"
+    }
+  ]
+}

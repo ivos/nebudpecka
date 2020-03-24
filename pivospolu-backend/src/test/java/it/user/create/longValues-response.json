@@ -1,0 +1,17 @@
+{
+  "timestamp": "REPLACED",
+  "status": 422,
+  "error": "Unprocessable Entity",
+  "path": "/api/users",
+  "errors": [
+    {
+      "path": "email",
+      "value": "email.1234567890123456789012345678901234567890123456789012345678@email.1234567890123456789012345.comx",
+      "errorCode": "size.must.be.between.1.and.100"
+    }, {
+      "path": "name",
+      "value": "name 12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345x",
+      "errorCode": "size.must.be.between.1.and.100"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "timestamp": "REPLACED",
+  "status": 422,
+  "error": "Unprocessable Entity",
+  "path": "/api/users",
+  "errors": [
+    {
+      "path": "email",
+      "value": null,
+      "errorCode": "duplicate"
+    }
+  ]
+}

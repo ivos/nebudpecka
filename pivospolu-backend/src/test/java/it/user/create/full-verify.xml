@@ -1,0 +1,14 @@
+<dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="../../../dataset.xsd">
+
+	<!--existing email-->
+	<users id="@auto" version="@auto" name="@auto" email="existing@email.com" password_hash="@auto"/>
+
+
+	<!--created-->
+	<users id="@any" version="0"
+	       name="name 12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345"
+	       email="email.1234567890123456789012345678901234567890123456789012345678@email.1234567890123456789012345.com"
+	       password_hash="@any"/>
+
+</dataset>

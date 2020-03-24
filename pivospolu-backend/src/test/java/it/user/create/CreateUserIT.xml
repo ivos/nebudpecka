@@ -1,0 +1,7 @@
+<dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="../../../dataset.xsd">
+
+	<!--existing email-->
+	<users id="@auto" version="@auto" email="existing@email.com" name="@auto" password_hash="@auto"/>
+
+</dataset>
