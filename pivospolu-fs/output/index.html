@@ -54,6 +54,12 @@
             font-weight: bold;
         }
 
+        code {
+            background-color: #f4f4f4;
+            padding: 0.1rem 0.4rem;
+            border-radius: 5px;
+        }
+
         main > section.cf-use-case > .cf-extensions > ul {
             padding-left: 1.9rem;
         }
@@ -114,6 +120,7 @@
 <th>Name</th>
 <th>Status</th>
 <th>Type</th>
+<th>Example</th>
 <th>Description</th>
 </tr>
 </thead>
@@ -125,6 +132,7 @@
 <p>bigint</p>
 </td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>Version<code class="float-right">version</code></td>
@@ -132,6 +140,7 @@
 <td>
 <p>bigint</p>
 </td>
+<td></td>
 <td>
 <p>Optimistic lock</p>
 </td>
@@ -143,6 +152,7 @@
 <p>string 100</p>
 </td>
 <td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -150,6 +160,10 @@
 <div id="section-referred-from-ActivityType">
 <strong>Referred from:</strong>
 <i class="fas fa-database text-muted"></i>&nbsp;<a href="#Activity" title="Activity">Activity</a>
+</div>
+<div id="section-erd-ActivityType">
+<div><strong>ERD:</strong></div>
+<img src="http://www.plantuml.com/plantuml/svg/LOv12eCm44NtSufP5mIxBIAwBeKkUe4q6NHeCf5aAeZsxjKYfTrztbkytsGrIP_1Gy-Eq7AodY0_M0QJJ43FGZeDX35f7m58b7N2rYgFwxXjQWR40xB34zwvOr6iglPwhkiF7obbZl8hBxiI4sZbMHDBXyUotDqBu2-mB4KHvsyK6XAtNNu3"/>
 </div>
 </div>
 </section>
@@ -721,6 +735,7 @@ Kdo
 <th>Name</th>
 <th>Status</th>
 <th>Type</th>
+<th>Example</th>
 <th>Description</th>
 </tr>
 </thead>
@@ -732,6 +747,7 @@ Kdo
 <p>bigint</p>
 </td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>Version<code class="float-right">version</code></td>
@@ -739,6 +755,7 @@ Kdo
 <td>
 <p>bigint</p>
 </td>
+<td></td>
 <td>
 <p>Optimistic lock</p>
 </td>
@@ -750,6 +767,7 @@ Kdo
 <p><a href="#User" title="User">User</a></p>
 </td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>Status<code class="float-right">status</code></td>
@@ -757,6 +775,7 @@ Kdo
 <td>
 <p>enum</p>
 </td>
+<td></td>
 <td>
 <p>Proposal, Confirmed, Canceled</p>
 </td>
@@ -768,6 +787,7 @@ Kdo
 <p><a href="#ActivityType" title="ActivityType">ActivityType</a></p>
 </td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>Location name<code class="float-right">locationName</code></td>
@@ -775,6 +795,7 @@ Kdo
 <td>
 <p>string 200</p>
 </td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -784,6 +805,9 @@ Kdo
 <p>decimal 2 + 15</p>
 </td>
 <td>
+<p>50.09652625485888</p>
+</td>
+<td>
 <p>0 .. 90</p>
 </td>
 </tr>
@@ -791,7 +815,10 @@ Kdo
 <td>Longitude<code class="float-right">longitude</code></td>
 <td title="Mandatory"><span class="badge badge-primary">M</span></td>
 <td>
-<p>longitude 3 + 15</p>
+<p>decimal 3 + 15</p>
+</td>
+<td>
+<p>14.411293328124998</p>
 </td>
 <td>
 <p>-180 .. +180</p>
@@ -803,6 +830,7 @@ Kdo
 <td>
 <p>datetime</p>
 </td>
+<td></td>
 <td>
 <p>Precision: minute</p>
 </td>
@@ -813,6 +841,7 @@ Kdo
 <td>
 <p>datetime</p>
 </td>
+<td></td>
 <td>
 <p>Precision: minute</p>
 </td>
@@ -824,6 +853,7 @@ Kdo
 <p>string 100</p>
 </td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>Description<code class="float-right">description</code></td>
@@ -831,6 +861,7 @@ Kdo
 <td>
 <p>string</p>
 </td>
+<td></td>
 <td></td>
 </tr>
 </tbody>
@@ -840,6 +871,10 @@ Kdo
 <strong>Refers to:</strong>
 <i class="fas fa-database text-muted"></i>&nbsp;<a href="#User" title="User">User</a>,
 <i class="fas fa-database text-muted"></i>&nbsp;<a href="#ActivityType" title="Activity type">Activity type</a>
+</div>
+<div id="section-erd-Activity">
+<div><strong>ERD:</strong></div>
+<img src="http://www.plantuml.com/plantuml/svg/TP5DRiCW48Ntd6BMZIB5YRg9K9Iig_uiqWDG63cZseC5urHHqhiNQEJQbhe2tlk6UGpxA2P8tpRgH0x1Kh0DglX9t9bWMcY8KIuTWWzoyaeX2ya53bRed3TN1V00v60B7rGJ2sXzU7lQxOf-nX39yzXyBfR_OWn9VezfqJeJrRqc1P8-9W6vRuU2ac4xz3tcuxIkyTP8QlPYsan62SGrh5UhuOx4949wbts7bbhJm1eMK3sE6S_r7DhCeJAr8vLEpWXAtlxPoEv_aoS1gr50Xz46wkHtP7T0wzTaVYirUVljjbpwwp0FLGOv5_SfH_xQ7m00"/>
 </div>
 </div>
 </section>
@@ -1014,6 +1049,7 @@ Název
 <th>Name</th>
 <th>Status</th>
 <th>Type</th>
+<th>Example</th>
 <th>Description</th>
 </tr>
 </thead>
@@ -1025,6 +1061,7 @@ Název
 <p>bigint</p>
 </td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>Version<code class="float-right">version</code></td>
@@ -1032,6 +1069,7 @@ Název
 <td>
 <p>bigint</p>
 </td>
+<td></td>
 <td>
 <p>Optimistic lock</p>
 </td>
@@ -1043,9 +1081,11 @@ Název
 <p>string 100</p>
 </td>
 <td></td>
+<td></td>
 </tr>
 <tr>
 <td>Email<code class="float-right">email</code></td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -1056,6 +1096,10 @@ Název
 <div id="section-referred-from-User">
 <strong>Referred from:</strong>
 <i class="fas fa-database text-muted"></i>&nbsp;<a href="#Activity" title="Activity">Activity</a>
+</div>
+<div id="section-erd-User">
+<div><strong>ERD:</strong></div>
+<img src="http://www.plantuml.com/plantuml/svg/JOx12e90443lynLp3WIxXeYU8-ZI1spke4Exip8x2QBzUoOHNTyxlDTaSshF661WJzYnTe4WFrX6fovYO26RHyAaDYG04cERyPP9SG740xB74zwvPp6iglPwhkkTJwIPa_pBorU9YxJnRChIux4iVuwYum0lW3smhaMH5cmxuschGaFYFwjl"/>
 </div>
 </div>
 </section>

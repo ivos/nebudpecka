@@ -8,6 +8,6 @@
   },
   "author": "",
   "devDependencies": {
-    "casefu-cli": "^0.6.3"
+    "casefu-cli": "^0.7.0"
   }
 }
