@@ -1,0 +1,13 @@
+{
+  "name": "nebudpecka-fs",
+  "version": "0.1.0",
+  "description": "NebudPecka.cz FSD",
+  "scripts": {
+    "build": "casefu build --sources src --target output/index.html",
+    "serve": "casefu serve --sources src --target output/index.html --port 18080"
+  },
+  "author": "",
+  "devDependencies": {
+    "casefu-cli": "^0.7.0"
+  }
+}
