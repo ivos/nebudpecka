@@ -1,8 +1,8 @@
 package cz.lastware.nebudpecka.user;
 
+import cz.lastware.nebudpecka.config.Logged;
 import cz.lastware.nebudpecka.user.dto.UserDtoCreate;
 import cz.lastware.nebudpecka.utils.RestUtils;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/users")
-@Slf4j
+@Logged(Logged.LogLevel.info)
 public class UserRestController {
 
 	private final UserService userService;
@@ -23,7 +23,6 @@ public class UserRestController {
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> create(
 			@RequestBody UserDtoCreate dto) {
-		log.info("Create user {}", dto);
 		User user = userService.create(dto);
 		return ResponseEntity
 				.created(RestUtils.location(user.getId()))

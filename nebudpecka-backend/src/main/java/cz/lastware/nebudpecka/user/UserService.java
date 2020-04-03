@@ -1,5 +1,6 @@
 package cz.lastware.nebudpecka.user;
 
+import cz.lastware.nebudpecka.config.Logged;
 import cz.lastware.nebudpecka.user.dto.UserDtoCreate;
 import cz.lastware.nebudpecka.validation.Validation;
 import ma.glasnost.orika.MapperFacade;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Logged
 public class UserService {
 
 	private final UserRepository repo;

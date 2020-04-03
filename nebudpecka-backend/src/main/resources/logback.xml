@@ -1,12 +1,14 @@
 <configuration scan="true">
 	<include resource="org/springframework/boot/logging/logback/base.xml"/>
 
-	<logger name="cz.lastware.nebudpecka" level="debug"/>
+	<logger name="cz.lastware.nebudpecka" level="trace"/>
 
 	<!--debug SQL statements-->
 	<!--<logger name="org.hibernate.SQL" level="debug" />-->
 	<!--debug SQL arguments-->
 	<!--<logger name="org.hibernate" level="trace" />-->
+
+	<!--<logger name="org.springframework" level="debug"/>-->
 
 	<!--<logger name="org.springframework.transaction" level="trace"/>-->
 	<!--<logger name="org.springframework.orm" level="debug"/>-->
