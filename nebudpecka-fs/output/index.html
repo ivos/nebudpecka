@@ -918,6 +918,9 @@ Kdo
 <p><a href="#/overview" class="btn btn-primary" title="/overview">Přihlásit se</a></p>
 </div>
 </div>
+<blockquote>
+<p>Creates a new <a href="#Session" title="Session">Session</a>.</p>
+</blockquote>
 <div class="form-group row">
 <div class="offset-sm-4 offset-lg-3 col-sm-7 col-lg-8">
 <p><a href="#/register" title="/register">Zaregistrujte se</a></p>
@@ -929,6 +932,7 @@ Kdo
 <div id="section-refers-to-/login">
 <strong>Refers to:</strong>
 <i class="fas fa-desktop text-muted"></i>&nbsp;<a href="#/overview" title="Overview">Overview</a>,
+<i class="fas fa-database text-muted"></i>&nbsp;<a href="#Session" title="Session">Session</a>,
 <i class="fas fa-desktop text-muted"></i>&nbsp;<a href="#/register" title="Register">Register</a>
 </div>
 <div id="section-referred-from-/login">
@@ -1136,6 +1140,93 @@ Název
 </div>
 </div>
 </section>
+<!--src/session/Session.md-->
+<section id="Session" class="cf-entity">
+<h2><i class="fas fa-database text-muted"></i> Session <code>Session</code></h2>
+<h3>Attributes:</h3>
+<table class="table table-bordered table-hover">
+<thead>
+<tr>
+<th>Name</th>
+<th>Status</th>
+<th>Type</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Token<code class="float-right">token</code></td>
+<td title="Primary key"><span class="badge badge-danger">PK</span></td>
+<td>
+<p>UUID</p>
+</td>
+<td>
+<p>ad880459-058a-497c-a873-5321e4ca2476</p>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>Created<code class="float-right">created</code></td>
+<td title="Mandatory"><span class="badge badge-primary">M</span></td>
+<td>
+<p>timestamp</p>
+</td>
+<td>
+<p>2020-02-20T12:34:56.789</p>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>Duration<code class="float-right">duration</code></td>
+<td title="Mandatory"><span class="badge badge-primary">M</span></td>
+<td>
+<p>int</p>
+</td>
+<td>
+<p>30</p>
+</td>
+<td>
+<p>Minutes</p>
+</td>
+</tr>
+<tr>
+<td>Expires<code class="float-right">expires</code></td>
+<td title="Mandatory"><span class="badge badge-primary">M</span></td>
+<td>
+<p>timestamp</p>
+</td>
+<td>
+<p>2020-02-20T14:43:56.789</p>
+</td>
+<td></td>
+</tr>
+<tr>
+<td>User<code class="float-right">user</code></td>
+<td>n : 1</td>
+<td>
+<p><a href="#User" title="User">User</a></p>
+</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div id="section-computed-Session">
+<div id="section-refers-to-Session">
+<strong>Refers to:</strong>
+<i class="fas fa-database text-muted"></i>&nbsp;<a href="#User" title="User">User</a>
+</div>
+<div id="section-referred-from-Session">
+<strong>Referred from:</strong>
+<i class="fas fa-desktop text-muted"></i>&nbsp;<a href="#/login" title="Login">Login</a>
+</div>
+<div id="section-erd-Session">
+<div><strong>ERD:</strong></div>
+<img src="http://www.plantuml.com/plantuml/svg/RO_B2i9034Nt-OgiXIxSIYbTk14H1Ea739r0GpiFCYbOMl_TcQBWmbNW76vkqYOrehERO61BsBFq4q4QsKSZnk74ddI9X45q203abNN11wN4mUCAY0VKC9B74tRTvOnrVRyspSvx8QDair5sb9jSpFhsiNOMesN92TdhZw1dPA7qDpOdaj9KHbsNx37p5y1Ejgsgmlgz3bhojhps1W00"/>
+</div>
+</div>
+</section>
 <!--src/user/User.md-->
 <section id="User" class="cf-entity">
 <h2><i class="fas fa-database text-muted"></i> User <code>User</code></h2>
@@ -1172,20 +1263,37 @@ Název
 </td>
 </tr>
 <tr>
+<td>Email<code class="float-right">email</code></td>
+<td title="Unique"><span class="badge badge-warning">U</span></td>
+<td>
+<p>string 100</p>
+</td>
+<td>
+<p><code>jan.novak@email.cz</code></p>
+</td>
+<td></td>
+</tr>
+<tr>
 <td>Name<code class="float-right">name</code></td>
 <td title="Mandatory"><span class="badge badge-primary">M</span></td>
 <td>
 <p>string 100</p>
 </td>
-<td></td>
+<td>
+<p>Jan Novák</p>
+</td>
 <td></td>
 </tr>
 <tr>
-<td>Email<code class="float-right">email</code></td>
+<td>Password hash<code class="float-right">passwordHash</code></td>
+<td title="Optional"><span class="badge badge-success">O</span></td>
+<td>
+<p>string 100</p>
+</td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>
+<p>BCrypt</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -1193,11 +1301,12 @@ Název
 <div id="section-referred-from-User">
 <strong>Referred from:</strong>
 <i class="fas fa-database text-muted"></i>&nbsp;<a href="#Activity" title="Activity">Activity</a>,
-<i class="fas fa-desktop text-muted"></i>&nbsp;<a href="#/register" title="Register">Register</a>
+<i class="fas fa-desktop text-muted"></i>&nbsp;<a href="#/register" title="Register">Register</a>,
+<i class="fas fa-database text-muted"></i>&nbsp;<a href="#Session" title="Session">Session</a>
 </div>
 <div id="section-erd-User">
 <div><strong>ERD:</strong></div>
-<img src="http://www.plantuml.com/plantuml/svg/JOx12e90443lynLp3WIxXeYU8-ZI1spke4Exip8x2QBzUoOHNTyxlDTaSshF661WJzYnTe4WFrX6fovYO26RHyAaDYG04cERyPP9SG740xB74zwvPp6iglPwhkkTJwIPa_pBorU9YxJnRChIux4iVuwYum0lW3smhaMH5cmxuschGaFYFwjl"/>
+<img src="http://www.plantuml.com/plantuml/svg/NS_D2e9G40NW_NsAMGU2RKD4Tq54GVW0DnrqwFx8dSaGxTrJSr5kptS6pcGiEiZJ6jLGXL1IA0qgVf1hTT0M33cKlaNmGHgl53eXwQ5W330eW1rG1GUuKqrE84dowobDbxp3mEJTBvvNGgl9JC0IoDMmZ-C9YnMTjhYrxs6hcLy-L4VDpRPncHflfPPTunX5Ve2y5EgciN_X3NbUfJ9qrVpr1m00"/>
 </div>
 </div>
 </section>
@@ -1247,6 +1356,9 @@ placeholder="Start typing to search..." />
 </li>
 <li class="__search-item" id="__search-item-Activity">
 <a href="#Activity" class="mr-3">Activity</a> <code>Activity</code>
+</li>
+<li class="__search-item" id="__search-item-Session">
+<a href="#Session" class="mr-3">Session</a> <code>Session</code>
 </li>
 <li class="__search-item" id="__search-item-User">
 <a href="#User" class="mr-3">User</a> <code>User</code>

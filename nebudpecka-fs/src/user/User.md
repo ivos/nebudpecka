@@ -4,5 +4,6 @@
 
 - Id (APK bigint)
 - Version (M bigint) - Optimistic lock
-- Name (M string 100)
-- Email ()
+- Email (U string 100): `jan.novak@email.cz`
+- Name (M string 100): Jan Novák
+- Password hash (O string 100) - BCrypt

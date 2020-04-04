@@ -24,36 +24,46 @@ public class LoggingAspect {
 	public void onMethod(Logged annotation) {
 	}
 
+	//	@Pointcut("execution(* org.springframework.data.repository.CrudRepository+.*(..))")
+	@Pointcut("this(org.springframework.data.repository.Repository)")
+	public void repository() {
+	}
+
 	@Around(value = "onClass(annotation)", argNames = "joinPoint,annotation")
 	public Object logMethodCallOnClass(ProceedingJoinPoint joinPoint, Logged annotation) throws Throwable {
-		return process(joinPoint, annotation);
+		return process(joinPoint, annotation.value());
 	}
 
 	@Around(value = "onMethod(annotation)", argNames = "joinPoint,annotation")
 	public Object logMethodCallOnMethod(ProceedingJoinPoint joinPoint, Logged annotation) throws Throwable {
-		return process(joinPoint, annotation);
+		return process(joinPoint, annotation.value());
 	}
 
-	private Object process(ProceedingJoinPoint joinPoint, Logged annotation) throws Throwable {
+	@Around(value = "repository()")
+	public Object logMethodCallOnRepository(ProceedingJoinPoint joinPoint) throws Throwable {
+		return process(joinPoint, Logged.LogLevel.debug);
+	}
+
+	private Object process(ProceedingJoinPoint joinPoint, Logged.LogLevel logLevel) throws Throwable {
 		Logger log = LoggerFactory.getLogger(joinPoint.getSignature().getDeclaringType());
-		if (isDisabled(annotation, log)) {
+		if (isDisabled(logLevel, log)) {
 			return joinPoint.proceed();
 		}
 		long start = System.currentTimeMillis();
-		logStart(joinPoint, annotation, log);
+		logStart(joinPoint, logLevel, log);
 		Object returnValue;
 		try {
 			returnValue = joinPoint.proceed();
-			logEnd(joinPoint, annotation, log, start, returnValue);
+			logEnd(joinPoint, logLevel, log, start, returnValue);
 			return returnValue;
 		} catch (Throwable t) {
-			logThrow(joinPoint, annotation, log, start, t);
+			logThrow(joinPoint, logLevel, log, start, t);
 			throw t;
 		}
 	}
 
-	private void logStart(ProceedingJoinPoint joinPoint, Logged annotation, Logger log) {
-		String indent = isInfo(annotation) ? ">>" : ">";
+	private void logStart(ProceedingJoinPoint joinPoint, Logged.LogLevel logLevel, Logger log) {
+		String indent = isInfo(logLevel) ? ">>" : ">";
 		String methodName = joinPoint.getSignature().getName();
 		Object[] methodArguments = joinPoint.getArgs();
 		String message = "{} [ENTRY] {}({})";
@@ -61,42 +71,47 @@ public class LoggingAspect {
 		messageArguments[0] = indent;
 		messageArguments[1] = methodName;
 		System.arraycopy(methodArguments, 0, messageArguments, 2, methodArguments.length);
-		if (isInfo(annotation)) {
+		if (isInfo(logLevel)) {
 			log.info(message, messageArguments);
 		} else {
 			log.debug(message, messageArguments);
 		}
 	}
 
-	private void logEnd(ProceedingJoinPoint joinPoint, Logged annotation, Logger log, long start, Object returnValue) {
-		String indent = isInfo(annotation) ? "<<" : "<";
+	private void logEnd(ProceedingJoinPoint joinPoint, Logged.LogLevel logLevel, Logger log, long start,
+			Object returnValue) {
+		String indent = isInfo(logLevel) ? "<<" : "<";
 		String methodName = joinPoint.getSignature().getName();
 		String message = "{} [EXIT] {} @ {} ms: {}";
-		if (isInfo(annotation)) {
-			log.info(message, indent, methodName, duration(start), returnValue);
+		Object[] messageArguments = new Object[]{indent, methodName, duration(start), returnValue};
+		if (isInfo(logLevel)) {
+			log.info(message, messageArguments);
 		} else {
-			log.debug(message, indent, methodName, duration(start), returnValue);
+			log.debug(message, messageArguments);
 		}
 	}
 
-	private void logThrow(ProceedingJoinPoint joinPoint, Logged annotation, Logger log, long start, Throwable t) {
-		String indent = isInfo(annotation) ? "<<" : "<";
+	private void logThrow(ProceedingJoinPoint joinPoint, Logged.LogLevel logLevel, Logger log, long start,
+			Throwable t) {
+		String indent = isInfo(logLevel) ? "<<" : "<";
 		String methodName = joinPoint.getSignature().getName();
-		String message = "{} [THROW] {} @ {} ms: {}";
-		if (isInfo(annotation)) {
-			log.info(message, indent, methodName, duration(start), t.getMessage());
+		String message = "{} [THROW] {} @ {} ms: {}: {}";
+		Object[] messageArguments = new Object[]
+				{indent, methodName, duration(start), t.getClass().getName(), t.getMessage()};
+		if (isInfo(logLevel)) {
+			log.info(message, messageArguments);
 		} else {
-			log.debug(message, indent, methodName, duration(start), t.getMessage());
+			log.debug(message, messageArguments);
 		}
 	}
 
-	private boolean isDisabled(Logged annotation, Logger log) {
-		return (isInfo(annotation) && !log.isInfoEnabled())
+	private boolean isDisabled(Logged.LogLevel logLevel, Logger log) {
+		return (isInfo(logLevel) && !log.isInfoEnabled())
 				|| !log.isDebugEnabled();
 	}
 
-	private boolean isInfo(Logged annotation) {
-		return Logged.LogLevel.info.equals(annotation.value());
+	private boolean isInfo(Logged.LogLevel logLevel) {
+		return Logged.LogLevel.info.equals(logLevel);
 	}
 
 	private long duration(long start) {

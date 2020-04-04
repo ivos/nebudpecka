@@ -24,7 +24,7 @@ public class RestUtils {
 		return Long.valueOf(stripped);
 	}
 
-	public static URI location(Long id) {
+	public static URI location(Object id) {
 		return URI.create(String.valueOf(id));
 	}
 }

@@ -1,0 +1,13 @@
+<dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="../../../dataset.xsd">
+
+	<!--other-->
+	<users id="1389284901" version="@auto" email="@auto" name="@auto" password_hash="@auto"/>
+	<!--found-->
+	<users id="1389284902" version="@auto" email="my@email.com" name="@auto"
+	       password_hash="$2a$10$ZUZzWJwphkYbXYUz1q7eheFfeC8yfgS0/Df1nkvmIuLlfAcdMp7mO"/>
+
+
+	<sessions/>
+
+</dataset>

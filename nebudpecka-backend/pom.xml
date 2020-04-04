@@ -102,20 +102,19 @@
 
 		<!--Test-->
 		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>net.sf.lightair</groupId>
 			<artifactId>light-air</artifactId>
-			<version>3.0.1</version>
+			<version>3.1.0</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -233,7 +232,7 @@
 					<plugin>
 						<groupId>net.sf.lightairmp</groupId>
 						<artifactId>light-air-maven-plugin</artifactId>
-						<version>3.0.1</version>
+						<version>3.1.0</version>
 						<dependencies>
 							<dependency>
 								<groupId>org.postgresql</groupId>

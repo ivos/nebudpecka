@@ -6,6 +6,7 @@
 		<xsd:complexType>
 			<xsd:choice minOccurs="0" maxOccurs="unbounded">
 				<xsd:element name="flyway_schema_history" type="flyway_schema_history__Type"/>
+				<xsd:element name="sessions" type="sessions__Type"/>
 				<xsd:element name="users" type="users__Type"/>
 			</xsd:choice>
 		</xsd:complexType>
@@ -22,6 +23,13 @@
 		<xsd:attribute name="installed_on" use="optional" type="la:TimestampType"/>
 		<xsd:attribute name="execution_time" use="optional" type="la:IntegerType"/>
 		<xsd:attribute name="success" use="optional" type="la:BooleanType"/>
+	</xsd:complexType>
+	<xsd:complexType name="sessions__Type">
+		<xsd:attribute name="token" use="optional" type="la:StringType"/>
+		<xsd:attribute name="created" use="optional" type="la:TimestampType"/>
+		<xsd:attribute name="duration" use="optional" type="la:IntegerType"/>
+		<xsd:attribute name="expires" use="optional" type="la:TimestampType"/>
+		<xsd:attribute name="user_id" use="optional" type="la:LongType"/>
 	</xsd:complexType>
 	<xsd:complexType name="users__Type">
 		<xsd:attribute name="id" use="optional" type="la:LongType"/>
