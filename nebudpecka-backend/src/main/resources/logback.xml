@@ -1,6 +1,11 @@
 <configuration scan="true">
 	<include resource="org/springframework/boot/logging/logback/base.xml"/>
 
+	<root level="info">
+		<appender-ref ref="CONSOLE"/>
+		<appender-ref ref="FILE"/>
+	</root>
+
 	<logger name="cz.lastware.nebudpecka" level="trace"/>
 
 	<!--debug SQL statements-->

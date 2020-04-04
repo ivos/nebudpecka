@@ -1,4 +1,4 @@
-package it.user.create;
+package it.my_user.register;
 
 import it.support.RestClient;
 import net.sf.lightair.LightAir;
@@ -13,9 +13,9 @@ import static org.hamcrest.Matchers.matchesPattern;
 @RunWith(LightAir.class)
 @Setup
 @Verify
-public class CreateUserIT {
+public class RegisterMyUserIT {
 
-	private static final String PATH = "/api/users";
+	private static final String PATH = "/api/my-user";
 
 	private void ok(String request) {
 		RestClient.from(this)
@@ -45,25 +45,25 @@ public class CreateUserIT {
 	}
 
 	@Test
-	@Verify("CreateUserIT.xml")
+	@Verify("RegisterMyUserIT.xml")
 	public void empty() {
 		validation("empty");
 	}
 
 	@Test
-	@Verify("CreateUserIT.xml")
+	@Verify("RegisterMyUserIT.xml")
 	public void emptyValues() {
 		validation("emptyValues");
 	}
 
 	@Test
-	@Verify("CreateUserIT.xml")
+	@Verify("RegisterMyUserIT.xml")
 	public void longValues() {
 		validation("longValues");
 	}
 
 	@Test
-	@Verify("CreateUserIT.xml")
+	@Verify("RegisterMyUserIT.xml")
 	public void duplicateEmail() {
 		validation("duplicateEmail");
 	}
