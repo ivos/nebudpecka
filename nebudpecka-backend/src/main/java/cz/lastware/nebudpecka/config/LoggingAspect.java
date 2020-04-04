@@ -36,22 +36,23 @@ public class LoggingAspect {
 
 	private Object process(ProceedingJoinPoint joinPoint, Logged annotation) throws Throwable {
 		Logger log = LoggerFactory.getLogger(joinPoint.getSignature().getDeclaringType());
+		if (isDisabled(annotation, log)) {
+			return joinPoint.proceed();
+		}
+		long start = System.currentTimeMillis();
 		logStart(joinPoint, annotation, log);
 		Object returnValue;
 		try {
 			returnValue = joinPoint.proceed();
-			logEnd(joinPoint, annotation, log, returnValue);
+			logEnd(joinPoint, annotation, log, start, returnValue);
 			return returnValue;
 		} catch (Throwable t) {
-			logThrow(joinPoint, annotation, log, t);
+			logThrow(joinPoint, annotation, log, start, t);
 			throw t;
 		}
 	}
 
 	private void logStart(ProceedingJoinPoint joinPoint, Logged annotation, Logger log) {
-		if (isDisabled(annotation, log)) {
-			return;
-		}
 		String indent = isInfo(annotation) ? ">>" : ">";
 		String methodName = joinPoint.getSignature().getName();
 		Object[] methodArguments = joinPoint.getArgs();
@@ -67,31 +68,25 @@ public class LoggingAspect {
 		}
 	}
 
-	private void logEnd(ProceedingJoinPoint joinPoint, Logged annotation, Logger log, Object returnValue) {
-		if (isDisabled(annotation, log)) {
-			return;
-		}
+	private void logEnd(ProceedingJoinPoint joinPoint, Logged annotation, Logger log, long start, Object returnValue) {
 		String indent = isInfo(annotation) ? "<<" : "<";
 		String methodName = joinPoint.getSignature().getName();
-		String message = "{} [EXIT] {}: {}";
+		String message = "{} [EXIT] {} @ {} ms: {}";
 		if (isInfo(annotation)) {
-			log.info(message, indent, methodName, returnValue);
+			log.info(message, indent, methodName, duration(start), returnValue);
 		} else {
-			log.debug(message, indent, methodName, returnValue);
+			log.debug(message, indent, methodName, duration(start), returnValue);
 		}
 	}
 
-	private void logThrow(ProceedingJoinPoint joinPoint, Logged annotation, Logger log, Throwable t) {
-		if (isDisabled(annotation, log)) {
-			return;
-		}
+	private void logThrow(ProceedingJoinPoint joinPoint, Logged annotation, Logger log, long start, Throwable t) {
 		String indent = isInfo(annotation) ? "<<" : "<";
 		String methodName = joinPoint.getSignature().getName();
-		String message = "{} [THROW] {}: {}";
+		String message = "{} [THROW] {} @ {} ms: {}";
 		if (isInfo(annotation)) {
-			log.info(message, indent, methodName, t);
+			log.info(message, indent, methodName, duration(start), t.getMessage());
 		} else {
-			log.debug(message, indent, methodName, t);
+			log.debug(message, indent, methodName, duration(start), t.getMessage());
 		}
 	}
 
@@ -102,5 +97,9 @@ public class LoggingAspect {
 
 	private boolean isInfo(Logged annotation) {
 		return Logged.LogLevel.info.equals(annotation.value());
+	}
+
+	private long duration(long start) {
+		return System.currentTimeMillis() - start;
 	}
 }
