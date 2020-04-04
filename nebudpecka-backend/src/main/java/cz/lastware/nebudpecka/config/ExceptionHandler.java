@@ -3,6 +3,7 @@ package cz.lastware.nebudpecka.config;
 import cz.lastware.nebudpecka.validation.DataIntegrityExceptionHandler;
 import cz.lastware.nebudpecka.validation.ValidationError;
 import cz.lastware.nebudpecka.validation.ValidationException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.Objects;
 
 @ControllerAdvice("cz.lastware.nebudpecka")
+@Slf4j
 public class ExceptionHandler {
 
 	private final List<DataIntegrityExceptionHandler> dataIntegrityExceptionHandlers;
@@ -35,13 +37,19 @@ public class ExceptionHandler {
 		return errorResponse;
 	}
 
+	private ResponseEntity<ErrorResponse> createAndLogResponseEntity(ErrorResponse errorResponse, HttpStatus status) {
+		ResponseEntity<ErrorResponse> responseEntity = new ResponseEntity<>(errorResponse, status);
+		log.warn("Response: {}", responseEntity);
+		return responseEntity;
+	}
+
 	@org.springframework.web.bind.annotation.ExceptionHandler(ValidationException.class)
 	@ResponseBody
 	ResponseEntity<ErrorResponse> handle(HttpServletRequest request, ValidationException exception) {
 		HttpStatus status = HttpStatus.UNPROCESSABLE_ENTITY;
 		ErrorResponse errorResponse = createErrorResponse(request, status);
 		errorResponse.setErrors(exception.getValidationErrors());
-		return new ResponseEntity<>(errorResponse, status);
+		return createAndLogResponseEntity(errorResponse, status);
 	}
 
 	@org.springframework.web.bind.annotation.ExceptionHandler(DataIntegrityViolationException.class)
@@ -56,7 +64,7 @@ public class ExceptionHandler {
 						.findFirst()
 						.orElse(new ValidationError(null, null, exception.getMostSpecificCause().getMessage()));
 		errorResponse.setErrors(Collections.singletonList(validationError));
-		return new ResponseEntity<>(errorResponse, status);
+		return createAndLogResponseEntity(errorResponse, status);
 	}
 
 	@org.springframework.web.bind.annotation.ExceptionHandler(EntityNotFoundException.class)
@@ -65,7 +73,7 @@ public class ExceptionHandler {
 		HttpStatus status = HttpStatus.NOT_FOUND;
 		ErrorResponse errorResponse = createErrorResponse(request, status);
 		errorResponse.setError("Not Found");
-		return new ResponseEntity<>(errorResponse, status);
+		return createAndLogResponseEntity(errorResponse, status);
 	}
 
 	@org.springframework.web.bind.annotation.ExceptionHandler(OptimisticLockException.class)
@@ -73,6 +81,6 @@ public class ExceptionHandler {
 	ResponseEntity<ErrorResponse> handle(HttpServletRequest request, RuntimeException exception) {
 		HttpStatus status = HttpStatus.CONFLICT;
 		ErrorResponse errorResponse = createErrorResponse(request, status);
-		return new ResponseEntity<>(errorResponse, status);
+		return createAndLogResponseEntity(errorResponse, status);
 	}
 }
