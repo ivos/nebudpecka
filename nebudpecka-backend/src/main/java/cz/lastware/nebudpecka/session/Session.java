@@ -34,4 +34,15 @@ public class Session {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
+
+	@Override
+	public String toString() {
+		return "Session{" +
+				"token=" + token +
+				", created=" + created +
+				", duration=" + duration +
+				", expires=" + expires +
+				", user=" + ((user == null) ? null : user.getId()) +
+				'}';
+	}
 }

@@ -1,6 +1,6 @@
 {
   "timestamp": "REPLACED",
-  "status": 404,
+  "status": 401,
   "error": "Not Found",
-  "path": "/api/login"
+  "path": "/api/sessions"
 }

@@ -15,7 +15,7 @@ import static org.hamcrest.Matchers.matchesPattern;
 @Verify
 public class RegisterMyUserIT {
 
-	private static final String PATH = "/api/my-user";
+	private static final String PATH = "/api/register";
 
 	private void ok(String request) {
 		RestClient.from(this)

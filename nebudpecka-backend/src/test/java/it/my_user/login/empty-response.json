@@ -2,7 +2,7 @@
   "timestamp": "REPLACED",
   "status": 422,
   "error": "Unprocessable Entity",
-  "path": "/api/sessions",
+  "path": "/api/login",
   "errors": [
     {
       "path": "email",

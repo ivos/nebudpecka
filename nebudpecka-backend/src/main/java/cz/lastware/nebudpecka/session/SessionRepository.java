@@ -2,5 +2,7 @@ package cz.lastware.nebudpecka.session;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface SessionRepository extends JpaRepository<Session, String> {
+import java.util.UUID;
+
+public interface SessionRepository extends JpaRepository<Session, UUID> {
 }

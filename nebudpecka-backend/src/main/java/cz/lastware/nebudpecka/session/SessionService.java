@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -49,6 +50,18 @@ public class SessionService {
 		session.setUser(user);
 
 		session = repo.saveAndFlush(session);
+		return session;
+	}
+
+	@Transactional(readOnly = true)
+	public Optional<Session> getValidSession(String token) {
+		LocalDateTime now = timeService.now();
+
+		Optional<Session> session = repo.findById(UUID.fromString(token));
+
+		if (session.isPresent() && session.get().getExpires().isBefore(now)) {
+			return Optional.empty();
+		}
 		return session;
 	}
 }

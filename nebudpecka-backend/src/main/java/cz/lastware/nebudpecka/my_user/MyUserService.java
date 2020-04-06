@@ -1,5 +1,6 @@
 package cz.lastware.nebudpecka.my_user;
 
+import cz.lastware.nebudpecka.config.CurrentSessionHolder;
 import cz.lastware.nebudpecka.config.Logged;
 import cz.lastware.nebudpecka.my_user.dto.MyUserDtoRegister;
 import cz.lastware.nebudpecka.user.User;
@@ -21,13 +22,15 @@ public class MyUserService {
 	private final MapperFacade mapper;
 	private final Validation validation;
 	private final PasswordEncoder passwordEncoder;
+	private final CurrentSessionHolder currentSessionHolder;
 
 	public MyUserService(UserRepository repo, MapperFacade mapper, Validation validation,
-			PasswordEncoder passwordEncoder) {
+			PasswordEncoder passwordEncoder, CurrentSessionHolder currentSessionHolder) {
 		this.repo = repo;
 		this.mapper = mapper;
 		this.validation = validation;
 		this.passwordEncoder = passwordEncoder;
+		this.currentSessionHolder = currentSessionHolder;
 	}
 
 	@Transactional
@@ -51,5 +54,10 @@ public class MyUserService {
 			throw new BadCredentialsException("Invalid password.");
 		}
 		return user;
+	}
+
+	@Transactional(readOnly = true)
+	public User getMyUser() {
+		return currentSessionHolder.getUser();
 	}
 }

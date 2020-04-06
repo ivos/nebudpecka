@@ -74,6 +74,11 @@ public class RestClient {
 			return this;
 		}
 
+		public RequestBuilder token(String token) {
+			rqSpec.auth().preemptive().basic(token, "");
+			return this;
+		}
+
 		public ResponseBuilder post(String path) {
 			resp = rqSpec.post(path);
 			return new ResponseBuilder(this);
