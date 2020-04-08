@@ -6,7 +6,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
 
 @Configuration
@@ -22,7 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public DaoAuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
 		authenticationProvider.setUserDetailsService(userDetailsService);
-		authenticationProvider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
+		authenticationProvider.setPasswordEncoder(new MatchingPasswordEncoder());
 		return authenticationProvider;
 	}
 
@@ -47,5 +47,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 				.exceptionHandling().authenticationEntryPoint(securityExceptionBasicEntryPoint())
 		;
+	}
+
+	public static class MatchingPasswordEncoder implements PasswordEncoder {
+		@Override
+		public String encode(CharSequence rawPassword) {
+			return "";
+		}
+
+		@Override
+		public boolean matches(CharSequence rawPassword, String encodedPassword) {
+			return true;
+		}
 	}
 }
