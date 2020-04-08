@@ -1,12 +1,14 @@
 import React from 'react'
-import { ErrorMessage, Field, Formik } from 'formik'
+import { usePrevious } from 'react-use'
+import { Formik } from 'formik'
 import { Button, Col, Form, Row } from 'react-bootstrap'
 import * as Yup from 'yup'
 import { register } from '../api'
+import { FieldGroup } from '../form'
 
 const mapServerErrorCodeToLabel = code => {
   if (code === 'duplicate') {
-    return 'Tato emailová adresa je již zaresgistrována'
+    return 'Tato emailová adresa je již zaregistrována'
   }
   return code
 }
@@ -24,6 +26,7 @@ export default () => {
 
       <Formik
         initialValues={{ email: '', password: '', name: '' }}
+        initialStatus={{}}
         validationSchema={Yup.object({
           email: Yup.string()
             .email("Musí být emailová adresa")
@@ -34,70 +37,73 @@ export default () => {
           name: Yup.string()
             .required('Povinné')
         })}
-        onSubmit={(values, { setSubmitting, setErrors }) => {
+        onSubmit={(values, { setSubmitting, setStatus }) => {
+          setStatus({})
           register(values)
+            .then(() => setSubmitting(false))
             .catch(error => {
-              const { errors: serverErrors } = error.response.data
-              const errors = Object.fromEntries(
-                serverErrors
-                  .map(({ path, errorCode }) => ([path, errorCode]))
-              )
-              setErrors(mapServerErrorCodesToLabels(errors))
+              // console.log('error response', error.response)
+              if (error.response.status === 422) {
+                const { errors: serverErrors } = error.response.data
+                const errors = Object.fromEntries(
+                  serverErrors
+                    .map(({ path, errorCode }) => ([path, errorCode]))
+                )
+                setStatus(mapServerErrorCodesToLabels(errors))
+              }
             })
         }}
       >
-        {({ handleSubmit, touched, dirty, errors }) => (
+        {({ handleSubmit, touched, dirty, errors, status, isSubmitting, isValid }) => {
+          // React.useEffect(() => {
+          //   console.log('errors', errors, 'isSubmitting', isSubmitting)
+          //   const errorFieldNames = Object.keys(errors)
+          //
+          //   if (isSubmitting && errorFieldNames.length > 0) {
+          //     console.log('>>>> first field name', errorFieldNames[0])
+          //   }
+          // })
 
-          <Form noValidate onSubmit={handleSubmit}>
+          const prevSubmitting = usePrevious(isSubmitting)
+          React.useEffect(() => {
+            const errorFieldNames = Object.keys(errors)
+            const serverErrorFieldNames = Object.keys(status)
+            console.log('==== Hook runs...', prevSubmitting, isSubmitting, isValid, errorFieldNames, serverErrorFieldNames)
 
-            <Form.Group as={Row} controlId="email">
-              <Form.Label column sm={2}>
-                Email
-              </Form.Label>
-              <Col sm={9}>
-                <Field name="email" as={Form.Control} placeholder="Email"
-                       isInvalid={touched.email && errors.email}
-                       autoFocus
-                />
-                {/*isValid={touched.email && !errors.email}*/}
-                <ErrorMessage name="email" component={Form.Control.Feedback} type="invalid"/>
-              </Col>
-            </Form.Group>
+            if ((prevSubmitting && !isSubmitting && !isValid && errorFieldNames.length > 0) ||
+              (isSubmitting && serverErrorFieldNames.length > 0)) {
+              console.log('==== Focusing')
+              const selector = `[name="${[...errorFieldNames, ...serverErrorFieldNames][0]}"]`
+              const errorElement = document.querySelector(selector)
+              if (errorElement) {
+                errorElement.focus()
+                // const timeout =
+                // setTimeout(() => errorElement.focus(), 1000)
+                // return () => {
+                //   console.log('clearing...')
+                //   clearTimeout(timeout)
+                // }
+              }
+            }
+          }, [prevSubmitting, isSubmitting, isValid, status, errors])
 
-            <Form.Group as={Row} controlId="password">
-              <Form.Label column sm={2}>
-                Password
-              </Form.Label>
-              <Col sm={9}>
-                <Field name="password" as={Form.Control} placeholder="Password"
-                       isInvalid={touched.password && errors.password}
-                       isValid={dirty && !errors.password}
-                />
-                <ErrorMessage name="password" component={Form.Control.Feedback} type="invalid"/>
-              </Col>
-            </Form.Group>
+          return (
+            <Form noValidate onSubmit={handleSubmit}>
 
-            <Form.Group as={Row} controlId="name">
-              <Form.Label column sm={2}>
-                Name
-              </Form.Label>
-              <Col sm={9}>
-                <Field name="name" as={Form.Control} placeholder="Name"
-                       isInvalid={touched.name && errors.name}
-                       isValid={dirty && !errors.name}
-                />
-                <ErrorMessage name="name" component={Form.Control.Feedback} type="invalid"/>
-              </Col>
-            </Form.Group>
+              <FieldGroup as={Form.Control} name="email" label="Email" sm={[2, 9]}
+                          isValid={false} autoFocus/>
+              {/*type="password"*/}
+              <FieldGroup as={Form.Control} name="password" label="Password" sm={[2, 9]}/>
+              <FieldGroup as={Form.Control} name="name" label="Name" sm={[2, 9]}/>
 
-            <Form.Group as={Row}>
-              <Col sm={{ offset: 2 }}>
-                <Button type="submit">Zaregistrovat se</Button>
-              </Col>
-            </Form.Group>
-          </Form>
-
-        )}
+              <Form.Group as={Row}>
+                <Col sm={{ offset: 2 }}>
+                  <Button type="submit">Zaregistrovat se</Button>
+                </Col>
+              </Form.Group>
+            </Form>
+          )
+        }}
       </Formik>
     </div>
   )
