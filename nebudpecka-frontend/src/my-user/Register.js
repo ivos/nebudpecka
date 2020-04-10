@@ -4,17 +4,11 @@ import * as Yup from 'yup'
 import { register } from '../api'
 import { FieldGroup, FormikForm } from '../form'
 
-const mapServerErrorCodeToLabel = code => {
-  if (code === 'duplicate') {
+const mapServerErrorCodeToLabel = (field, code) => {
+  if (field === 'email' && code === 'duplicate') {
     return 'Tato emailová adresa je již zaregistrována'
   }
   return code
-}
-
-const mapServerErrorCodesToLabels = errors => {
-  return Object.fromEntries(Object.entries(errors)
-    .map(([field, code]) => ([field, mapServerErrorCodeToLabel(code)]))
-  )
 }
 
 export default () => {
@@ -36,21 +30,8 @@ export default () => {
               .required()
           })
         }
-        onSubmit={(values, { setStatus }) => {
-          setStatus({})
-          return register(values)
-            .catch(error => {
-              // console.log('error response', error.response)
-              if (error.response.status === 422) {
-                const { errors: serverErrors } = error.response.data
-                const errors = Object.fromEntries(
-                  serverErrors
-                    .map(({ path, errorCode }) => ([path, errorCode]))
-                )
-                setStatus(mapServerErrorCodesToLabels(errors))
-              }
-            })
-        }}
+        onSubmit={register}
+        mapServerErrorCodeToLabel={mapServerErrorCodeToLabel}
       >
         <FieldGroup as={Form.Control} name="email" label="Email" sm={[2, 9]}
                     isValid={false} autoFocus/>

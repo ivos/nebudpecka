@@ -9,6 +9,7 @@ export default () => {
   React.useEffect(() => {
     const errorFieldNames = Object.keys(errors)
     const serverErrorFieldNames = Object.keys(status)
+    // console.log('==== Hook runs...', { prevSubmitting, isSubmitting, isValid }, errorFieldNames, serverErrorFieldNames)
 
     if ((prevSubmitting && !isSubmitting && !isValid && errorFieldNames.length > 0) ||
       (isSubmitting && serverErrorFieldNames.length > 0)) {
