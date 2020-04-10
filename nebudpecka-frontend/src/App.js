@@ -1,10 +1,13 @@
 import React from 'react'
 import './App.css'
 import Router from './Router'
+import { Container } from 'react-bootstrap'
 
 function App () {
   return (
-    <Router/>
+    <Container fluid>
+      <Router/>
+    </Container>
   )
 }
 

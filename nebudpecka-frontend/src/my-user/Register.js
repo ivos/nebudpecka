@@ -1,47 +1,66 @@
 import React from 'react'
-import { ErrorMessage, Field, Form as FormiForm, Formik } from 'formik'
-import { Button, Col, Form, Row } from 'react-bootstrap'
+import { Button, Card, Col, Form, Row } from 'react-bootstrap'
+import * as Yup from 'yup'
+import { register } from '../api'
+import { FieldGroup, FormikForm } from '../form'
+import { capitalCase } from 'change-case'
+
+const mapServerErrorCodeToLabel = (field, code) => {
+  if (field === 'email' && code === 'duplicate') {
+    return 'Tato emailová adresa je již zaregistrována'
+  }
+  return code
+}
+
+const preFillName = (values, setFieldValue) => {
+  const { email, name } = values
+  if (email && !name) {
+    const defaultName = capitalCase(email.substring(0, email.indexOf('@')))
+    setFieldValue('name', defaultName)
+  }
+}
 
 export default () => {
   return (
-    <div>
-      Register
+    <Card>
+      <Card.Body>
+        <Card.Title>
+          Registrace
+        </Card.Title>
 
-      <Formik
-        initialValues={{ email: '' }}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
-        }}
-      >
-        <FormiForm>
-
-          <Form.Group as={Row} controlId="formHorizontalEmail">
-            <Form.Label column sm={2}>
-              Email
-            </Form.Label>
-            <Col sm={6}>
-              <Field name="email" as={Form.Control} placeholder="Email"/>
-            </Col>
-            <Col sm={4}>
-              <ErrorMessage name="email" component="div"/>
-            </Col>
-          </Form.Group>
-
-
-          {/*<Field name="password" type="password"/>*/}
-
-          {/*<Field name="name"/>*/}
+        <FormikForm
+          initialValues={{ email: '', password: '', name: '' }}
+          validationSchema={
+            Yup.object({
+              email: Yup.string()
+                .email()
+                .required(),
+              password: Yup.string()
+                .min(8)
+                .required(),
+              name: Yup.string()
+                .required()
+            })
+          }
+          onSubmit={register}
+          mapServerErrorCodeToLabel={mapServerErrorCodeToLabel}
+        >
+          {({ values, setFieldValue }) => <>
+          <FieldGroup as={Form.Control} name="email" label="Email" sm={[2, 9]}
+                      isValid={false} autoFocus autoComplete="username"/>
+          <FieldGroup as={Form.Control} name="password" label="Heslo" sm={[2, 9]}
+                      type="password" autoComplete="current-password"/>
+          <FieldGroup as={Form.Control} name="name" label="Jméno" sm={[2, 9]}
+                      onFocus={() => preFillName(values, setFieldValue)}/>
 
           <Form.Group as={Row}>
             <Col sm={{ offset: 2 }}>
               <Button type="submit">Zaregistrovat se</Button>
             </Col>
           </Form.Group>
-        </FormiForm>
-      </Formik>
-    </div>
+          </>}
+        </FormikForm>
+      </Card.Body>
+    </Card>
   )
 }
