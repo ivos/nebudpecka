@@ -30,11 +30,16 @@ export default ({ initialValues, onSubmit, mapServerErrorCodeToLabel, children, 
           {...rest}
   >
     {
-      ({ handleSubmit }) =>
-        <Form noValidate onSubmit={handleSubmit}>
-          {children}
+      (props) => {
+        const resolvedChildren = (typeof children === 'function') ? children(props) : children
 
-          <FocusError/>
-        </Form>
+        return (
+          <Form noValidate onSubmit={props.handleSubmit}>
+            {resolvedChildren}
+
+            <FocusError/>
+          </Form>
+        )
+      }
     }
   </Formik>
