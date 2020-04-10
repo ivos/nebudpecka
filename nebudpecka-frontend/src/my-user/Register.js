@@ -24,16 +24,18 @@ export default () => {
 
       <FormikForm
         initialValues={{ email: '', password: '', name: '' }}
-        validationSchema={Yup.object({
-          email: Yup.string()
-            .email("Musí být emailová adresa")
-            .required('Povinné'),
-          password: Yup.string()
-            .min(8, "Musí být alespoň 8 znaků")
-            .required('Povinné'),
-          name: Yup.string()
-            .required('Povinné')
-        })}
+        validationSchema={
+          Yup.object({
+            email: Yup.string()
+              .email()
+              .required(),
+            password: Yup.string()
+              .min(8)
+              .required(),
+            name: Yup.string()
+              .required()
+          })
+        }
         onSubmit={(values, { setStatus }) => {
           setStatus({})
           return register(values)
