@@ -1,7 +1,7 @@
 import React from 'react'
-import { Button, Card, Col, Form, Row } from 'react-bootstrap'
+import { Card, Col, Form, Row } from 'react-bootstrap'
 import * as Yup from 'yup'
-import { FieldGroup, FormikForm } from '../form'
+import { FieldGroup, FormikForm, SubmitButton } from '../form'
 import { getMyUser, login } from '../api'
 import { clear, setMyUser, setToken } from '../state/local-storage'
 
@@ -51,7 +51,7 @@ export default () => {
 
           <Form.Group as={Row}>
             <Col sm={{ offset: 2 }}>
-              <Button type="submit">Přihlásit se</Button>
+              <SubmitButton>Přihlásit se</SubmitButton>
             </Col>
           </Form.Group>
         </FormikForm>

@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { getToken } from '../state/local-storage'
 
-// const delayRequests = null
-const delayRequests = 2000
+const delayRequests = null
+// const delayRequests = 2000
 
 const getAuth = () => {
   const token = getToken()

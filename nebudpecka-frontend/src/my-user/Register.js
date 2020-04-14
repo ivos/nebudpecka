@@ -1,9 +1,11 @@
 import React from 'react'
-import { Button, Card, Col, Form, Row } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
+import { Card, Col, Form, Row } from 'react-bootstrap'
 import * as Yup from 'yup'
-import { register } from '../api'
-import { FieldGroup, FormikForm } from '../form'
 import { capitalCase } from 'change-case'
+import { FieldGroup, FormikForm, SubmitButton } from '../form'
+import { register } from '../api'
+import { clear } from '../state/local-storage'
 
 const mapServerErrorCodeToLabel = (field, code) => {
   if (field === 'email' && code === 'duplicate') {
@@ -21,6 +23,14 @@ const preFillName = (values, setFieldValue) => {
 }
 
 export default () => {
+  const history = useHistory()
+
+  const handleSubmit = async data => {
+    clear()
+    await register(data)
+    history.push('/login')
+  }
+
   return (
     <Card>
       <Card.Body>
@@ -42,7 +52,7 @@ export default () => {
                 .required()
             })
           }
-          onSubmit={register}
+          onSubmit={handleSubmit}
           mapServerErrorCodeToLabel={mapServerErrorCodeToLabel}
         >
           {({ values, setFieldValue }) => <>
@@ -55,7 +65,7 @@ export default () => {
 
           <Form.Group as={Row}>
             <Col sm={{ offset: 2 }}>
-              <Button type="submit">Zaregistrovat se</Button>
+              <SubmitButton>Zaregistrovat se</SubmitButton>
             </Col>
           </Form.Group>
           </>}
