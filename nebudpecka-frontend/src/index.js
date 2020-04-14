@@ -5,6 +5,12 @@ import './index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+// import { x as farX } from '@fortawesome/free-regular-svg-icons'
+
+library.add(faSpinner)
+
 require('./i18n')
 
 ReactDOM.render(
