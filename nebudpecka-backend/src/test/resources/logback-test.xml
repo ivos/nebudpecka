@@ -6,7 +6,7 @@
 		<appender-ref ref="FILE"/>
 	</root>
 
-	<logger name="cz.lastware.nebudpecka" level="debug"/>
+	<logger name="cz.lastware.nebudpecka" level="trace"/>
 
 	<!--<logger name="net.sf.lightair" level="info"/>-->
 

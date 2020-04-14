@@ -33,12 +33,9 @@ public class MyUserRestController {
 	}
 
 	@RequestMapping(path = "/register", method = RequestMethod.POST)
-	public ResponseEntity<Void> register(
+	public void register(
 			@RequestBody MyUserDtoRegister dto) {
-		User user = myUserService.register(dto);
-		return ResponseEntity
-				.created(RestUtils.location(user.getId()))
-				.build();
+		myUserService.register(dto);
 	}
 
 	@RequestMapping(path = "/login", method = RequestMethod.POST)

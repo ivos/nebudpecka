@@ -8,8 +8,6 @@ import org.apache.http.HttpStatus;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.hamcrest.Matchers.matchesPattern;
-
 @RunWith(LightAir.class)
 @Setup
 @Verify
@@ -22,8 +20,7 @@ public class RegisterMyUserIT {
 				.requestName(request)
 				.post(PATH)
 				.emptyResponse()
-				.statusCode(HttpStatus.SC_CREATED)
-				.location(matchesPattern("^[0-9]+$"));
+				.statusCode(HttpStatus.SC_OK);
 	}
 
 	@Test
