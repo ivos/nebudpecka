@@ -9,10 +9,13 @@ export default () => {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/register">Register</Link>
+          <Link to="/register">Registrace</Link>
         </li>
         <li>
-          <Link to="/login">Login</Link>
+          <Link to="/login">Přihlášení</Link>
+        </li>
+        <li>
+          <Link to="/my-profile">Můj profil</Link>
         </li>
       </ul>
     </nav>
