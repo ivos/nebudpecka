@@ -56,11 +56,11 @@ export default () => {
           mapServerErrorCodeToLabel={mapServerErrorCodeToLabel}
         >
           {({ values, setFieldValue }) => <>
-          <FieldGroup as={Form.Control} name="email" label="Email" sm={[2, 9]}
+          <FieldGroup as={Form.Control} name="email" label="Email" sm={[2, 9]} required
                       isValid={false} autoFocus autoComplete="username"/>
-          <FieldGroup as={Form.Control} name="password" label="Heslo" sm={[2, 9]}
+          <FieldGroup as={Form.Control} name="password" label="Heslo" sm={[2, 9]} required
                       type="password" autoComplete="current-password"/>
-          <FieldGroup as={Form.Control} name="name" label="Jméno" sm={[2, 9]}
+          <FieldGroup as={Form.Control} name="name" label="Jméno" sm={[2, 9]} required
                       onFocus={() => preFillName(values, setFieldValue)}/>
 
           <Form.Group as={Row}>

@@ -44,9 +44,9 @@ export default () => {
           }
           onSubmit={handleSubmit}
         >
-          <FieldGroup as={Form.Control} name="email" label="Email" sm={[2, 9]}
+          <FieldGroup as={Form.Control} name="email" label="Email" sm={[2, 9]} required
                       isValid={false} autoFocus autoComplete="username"/>
-          <FieldGroup as={Form.Control} name="password" label="Heslo" sm={[2, 9]}
+          <FieldGroup as={Form.Control} name="password" label="Heslo" sm={[2, 9]} required
                       isValid={false} type="password" autoComplete="current-password"/>
 
           <Form.Group as={Row}>
