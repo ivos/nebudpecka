@@ -27,7 +27,7 @@ public class SecurityUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String token) throws UsernameNotFoundException {
 		Session session = sessionService.getValidSession(token)
 				.orElseThrow(() ->
-						new UsernameNotFoundException("Session with token [" + token + "] was not found."));
+						new UsernameNotFoundException("A valid session with token [" + token + "] was not found."));
 		currentSessionHolder.setSession(session);
 		log.debug("Authenticated token {} as {}, {}", token, session, session.getUser());
 		return org.springframework.security.core.userdetails.User

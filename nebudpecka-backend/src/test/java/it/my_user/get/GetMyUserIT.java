@@ -27,14 +27,6 @@ public class GetMyUserIT {
 		ok("full");
 	}
 
-	private void error(String token, String response, int status) {
-		RestClient.from(this)
-				.token(token)
-				.get(PATH)
-				.responseName(response, ctx -> ctx.set("$.timestamp", "REPLACED"))
-				.statusCode(status);
-	}
-
 	private void unauthorized(String token) {
 		RestClient.from(this)
 				.token(token)

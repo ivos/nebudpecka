@@ -20,11 +20,9 @@ public class LoggingAspect {
 	public void onMethod(Logged annotation) {
 	}
 
-//	@Pointcut("execution(* org.springframework.data.repository.CrudRepository+.*(..))")
-//	@Pointcut("execution(* org.springframework.data.repository.Repository+.*(..))")
-//	@Pointcut("this(org.springframework.data.repository.Repository)")
-//	public void repository() {
-//	}
+	@Pointcut("execution(* org.springframework.data.repository.Repository+.*(..))")
+	public void repository() {
+	}
 
 	@Around(value = "onClass(annotation)", argNames = "joinPoint,annotation")
 	public Object logMethodCallOnClass(ProceedingJoinPoint joinPoint, Logged annotation) throws Throwable {
@@ -36,10 +34,10 @@ public class LoggingAspect {
 		return process(joinPoint, annotation.value());
 	}
 
-//	@Around(value = "repository()")
-//	public Object logMethodCallOnRepository(ProceedingJoinPoint joinPoint) throws Throwable {
-//		return process(joinPoint, Logged.LogLevel.debug);
-//	}
+	@Around(value = "repository()")
+	public Object logMethodCallOnRepository(ProceedingJoinPoint joinPoint) throws Throwable {
+		return process(joinPoint, Logged.LogLevel.debug);
+	}
 
 	private Object process(ProceedingJoinPoint joinPoint, Logged.LogLevel logLevel) throws Throwable {
 		Logger log = LoggerFactory.getLogger(joinPoint.getSignature().getDeclaringType());
