@@ -45,6 +45,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.httpBasic()
 				.authenticationEntryPoint(securityExceptionBasicEntryPoint())
 				.and()
+				.logout().logoutRequestMatcher(request -> false) // disable Spring auto-conf logout handler
+				.and()
 				.exceptionHandling().authenticationEntryPoint(securityExceptionBasicEntryPoint())
 		;
 	}

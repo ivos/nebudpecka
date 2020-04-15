@@ -1,0 +1,7 @@
+{
+  "timestamp": "REPLACED",
+  "status": 401,
+  "error": "Unauthorized",
+  "message": "Unauthorized",
+  "path": "/api/logout"
+}

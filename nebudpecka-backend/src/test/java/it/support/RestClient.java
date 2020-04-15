@@ -22,6 +22,10 @@ public class RestClient {
 
 	public static final String CONTENT_TYPE = "application/json";
 
+	public static final String REPLACED = "REPLACED";
+	public static final UnaryOperator<DocumentContext> TIMESTAMP_REPLACER =
+			ctx -> ctx.set("$.timestamp", REPLACED);
+
 	public static RequestBuilder from(Object testInstance) {
 		return new RequestBuilder(testInstance);
 	}
@@ -75,7 +79,9 @@ public class RestClient {
 		}
 
 		public RequestBuilder token(String token) {
-			rqSpec.auth().preemptive().basic(token, "");
+			if (token != null) {
+				rqSpec.auth().preemptive().basic(token, "");
+			}
 			return this;
 		}
 

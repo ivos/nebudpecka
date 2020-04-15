@@ -8,6 +8,8 @@ import org.apache.http.HttpStatus;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static it.support.RestClient.TIMESTAMP_REPLACER;
+
 @RunWith(LightAir.class)
 @Setup
 @Verify
@@ -37,7 +39,7 @@ public class RegisterMyUserIT {
 		RestClient.from(this)
 				.requestName(request)
 				.post(PATH)
-				.responseName(request, ctx -> ctx.set("$.timestamp", "REPLACED"))
+				.responseName(request, TIMESTAMP_REPLACER)
 				.statusCode(HttpStatus.SC_UNPROCESSABLE_ENTITY);
 	}
 

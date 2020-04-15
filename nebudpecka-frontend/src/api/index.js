@@ -37,6 +37,9 @@ export const register = data =>
 export const login = data =>
   axios.post('/api/login', data)
 
+export const logout = () =>
+  axios.put('/api/logout')
+
 const myUserBase = '/api/my-user'
 
 export const getMyUser = () =>

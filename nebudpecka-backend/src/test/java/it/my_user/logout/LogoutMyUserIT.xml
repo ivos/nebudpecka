@@ -1,0 +1,19 @@
+<dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="../../../dataset.xsd">
+
+	<!--other-->
+	<users id="1389284901" version="@auto" email="@auto" name="@auto" password_hash="@auto"/>
+	<sessions token="cecc4d43-d3d8-4058-8a4c-3d5475ef030c" user_id="1389284901" created="@timestamp-PT10M"
+	          expires="@timestamp+PT10M" duration="90"/>
+
+	<!--full-->
+	<users id="1389284902" version="@auto" email="@auto" name="@auto" password_hash="@auto"/>
+	<sessions token="eca48917-9a92-4e5b-826e-17ff9d6c8c0f" user_id="1389284902" created="@timestamp-PT10M"
+	          expires="@timestamp+PT10M" duration="90"/>
+
+	<!--expired-->
+	<users id="1389284903" version="@auto" email="@auto" name="@auto" password_hash="@auto"/>
+	<sessions token="eca48917-9a92-4e5b-826e-e8918ed00000" user_id="1389284903" created="@timestamp-PT30M"
+	          expires="@timestamp-PT1M" duration="90"/>
+
+</dataset>

@@ -56,4 +56,9 @@ public class MyUserRestController {
 				.headers(eTag(user.getVersion()))
 				.body(dto);
 	}
+
+	@RequestMapping(path = "/logout", method = RequestMethod.PUT)
+	public void logout() {
+		sessionService.logout();
+	}
 }

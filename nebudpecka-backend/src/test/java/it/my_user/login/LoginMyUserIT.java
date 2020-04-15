@@ -8,6 +8,7 @@ import org.apache.http.HttpStatus;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static it.support.RestClient.TIMESTAMP_REPLACER;
 import static org.hamcrest.Matchers.matchesPattern;
 
 @RunWith(LightAir.class)
@@ -35,7 +36,7 @@ public class LoginMyUserIT {
 		RestClient.from(this)
 				.requestName(request)
 				.post(PATH)
-				.responseName(request, ctx -> ctx.set("$.timestamp", "REPLACED"))
+				.responseName(request, TIMESTAMP_REPLACER)
 				.statusCode(status);
 	}
 
