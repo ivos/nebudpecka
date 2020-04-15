@@ -22,11 +22,12 @@ const preFillName = (values, setFieldValue) => {
   }
 }
 
-export default () => {
+export default ({ loginStateChanged }) => {
   const history = useHistory()
 
   const handleSubmit = async data => {
     clear()
+    loginStateChanged()
     await register(data)
     history.push('/login')
   }

@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { HashRouter as Router, Route, Switch } from 'react-router-dom'
+import { getMyUser } from './state/local-storage'
 
 import Header from './layout/Header'
 import Register from './my-user/Register'
@@ -7,15 +8,21 @@ import Login from './my-user/Login'
 import MyProfile from './my-user/MyProfile'
 
 export default () => {
+  const [loggedId, setLoggedId] = useState(!!getMyUser())
+
+  const loginStateChanged = () => {
+    setLoggedId(!!getMyUser())
+  }
+
   return (
     <Router>
-      <Header/>
+      <Header loggedId={loggedId} loginStateChanged={loginStateChanged}/>
       <Switch>
         <Route path="/register">
-          <Register/>
+          <Register loginStateChanged={loginStateChanged}/>
         </Route>
         <Route path="/login">
-          <Login/>
+          <Login loginStateChanged={loginStateChanged}/>
         </Route>
         <Route path="/my-profile">
           <MyProfile/>

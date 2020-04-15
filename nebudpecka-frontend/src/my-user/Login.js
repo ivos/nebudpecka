@@ -1,11 +1,12 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import { Card, Col, Form, Row } from 'react-bootstrap'
 import * as Yup from 'yup'
 import { FieldGroup, FormikForm, SubmitButton } from '../form'
 import { getMyUser, login } from '../api'
 import { clear, setMyUser, setToken } from '../state/local-storage'
 
-const loadToken = async data => {
+const handleLogin = async data => {
   const response = await login(data)
   const token = response.headers.location
   setToken(token)
@@ -17,13 +18,19 @@ const loadMyUser = async () => {
   setMyUser(myUser)
 }
 
-const handleSubmit = async data => {
-  clear()
-  await loadToken(data)
-  await loadMyUser()
-}
+export default ({ loginStateChanged }) => {
+  const history = useHistory()
 
-export default () => {
+  const handleSubmit = async data => {
+    clear()
+    loginStateChanged()
+
+    await handleLogin(data)
+    await loadMyUser()
+    loginStateChanged()
+    history.push('/')
+  }
+
   return (
     <Card>
       <Card.Body>
